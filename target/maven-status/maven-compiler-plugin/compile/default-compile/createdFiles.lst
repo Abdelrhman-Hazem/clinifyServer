@@ -1,0 +1,13 @@
+gov\iti\jets\clinify\mappers\PatientDocumentMapper.class
+gov\iti\jets\clinify\models\dtos\DoctorTitleSimpleDto.class
+gov\iti\jets\clinify\models\entities\DoctorSpecialization.class
+gov\iti\jets\clinify\models\dtos\PatientDocumentDto.class
+gov\iti\jets\clinify\mappers\DoctorSpecializationSimpleMapper.class
+gov\iti\jets\clinify\models\entities\Appointment.class
+gov\iti\jets\clinify\mappers\DoctorTitleSimpleMapper.class
+gov\iti\jets\clinify\models\dtos\CitySimpleDto.class
+gov\iti\jets\clinify\models\dtos\DoctorSpecializationSimpleDto.class
+gov\iti\jets\clinify\models\entities\DoctorTitle.class
+gov\iti\jets\clinify\mappers\AreaSimpleMapper.class
+gov\iti\jets\clinify\mappers\CitySimpleMapper.class
+gov\iti\jets\clinify\models\dtos\AreaSimpleDto.class
