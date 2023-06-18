@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-06-16T20:42:29+0200",
-    comments = "version: 1.5.4.Final, compiler: javac, environment: Java 17.0.5 (Oracle Corporation)"
+    date = "2023-06-18T09:40:26+0200",
+    comments = "version: 1.5.4.Final, compiler: Eclipse JDT (IDE) 3.34.0.v20230511-1142, environment: Java 17.0.7 (Eclipse Adoptium)"
 )
 @Component
 public class DoctorTitleSimpleMapperImpl implements DoctorTitleSimpleMapper {
@@ -21,6 +21,9 @@ public class DoctorTitleSimpleMapperImpl implements DoctorTitleSimpleMapper {
 
         DoctorTitle doctorTitle = new DoctorTitle();
 
+        doctorTitle.setId( doctorTitleSimpleDto.getId() );
+        doctorTitle.setName( doctorTitleSimpleDto.getName() );
+
         return doctorTitle;
     }
 
@@ -32,6 +35,9 @@ public class DoctorTitleSimpleMapperImpl implements DoctorTitleSimpleMapper {
 
         DoctorTitleSimpleDto doctorTitleSimpleDto = new DoctorTitleSimpleDto();
 
+        doctorTitleSimpleDto.setId( doctorTitle.getId() );
+        doctorTitleSimpleDto.setName( doctorTitle.getName() );
+
         return doctorTitleSimpleDto;
     }
 
@@ -39,6 +45,13 @@ public class DoctorTitleSimpleMapperImpl implements DoctorTitleSimpleMapper {
     public DoctorTitle partialUpdate(DoctorTitleSimpleDto doctorTitleSimpleDto, DoctorTitle doctorTitle) {
         if ( doctorTitleSimpleDto == null ) {
             return doctorTitle;
+        }
+
+        if ( doctorTitleSimpleDto.getId() != null ) {
+            doctorTitle.setId( doctorTitleSimpleDto.getId() );
+        }
+        if ( doctorTitleSimpleDto.getName() != null ) {
+            doctorTitle.setName( doctorTitleSimpleDto.getName() );
         }
 
         return doctorTitle;

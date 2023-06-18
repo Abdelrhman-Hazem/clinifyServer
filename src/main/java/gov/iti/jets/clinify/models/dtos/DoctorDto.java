@@ -1,5 +1,8 @@
 package gov.iti.jets.clinify.models.dtos;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.Value;
 
 import java.io.Serializable;
@@ -8,7 +11,9 @@ import java.util.Set;
 /**
  * DTO for {@link gov.iti.jets.clinify.models.entities.Doctor}
  */
-@Value
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class DoctorDto implements Serializable {
     Integer id;
     DoctorTitleSimpleDto doctorTitle;

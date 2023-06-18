@@ -1,5 +1,8 @@
 package gov.iti.jets.clinify.models.dtos;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.Value;
 
 import java.io.Serializable;
@@ -9,7 +12,9 @@ import java.util.Set;
 /**
  * DTO for {@link gov.iti.jets.clinify.models.entities.Patient}
  */
-@Value
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class PatientDto implements Serializable {
     Integer id;
     AreaSimpleDto area;

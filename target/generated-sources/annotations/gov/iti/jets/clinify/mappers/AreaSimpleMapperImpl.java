@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-06-16T20:42:29+0200",
-    comments = "version: 1.5.4.Final, compiler: javac, environment: Java 17.0.5 (Oracle Corporation)"
+    date = "2023-06-18T09:40:26+0200",
+    comments = "version: 1.5.4.Final, compiler: Eclipse JDT (IDE) 3.34.0.v20230511-1142, environment: Java 17.0.7 (Eclipse Adoptium)"
 )
 @Component
 public class AreaSimpleMapperImpl implements AreaSimpleMapper {
@@ -21,6 +21,9 @@ public class AreaSimpleMapperImpl implements AreaSimpleMapper {
 
         Area area = new Area();
 
+        area.setId( areaSimpleDto.getId() );
+        area.setName( areaSimpleDto.getName() );
+
         return area;
     }
 
@@ -32,6 +35,9 @@ public class AreaSimpleMapperImpl implements AreaSimpleMapper {
 
         AreaSimpleDto areaSimpleDto = new AreaSimpleDto();
 
+        areaSimpleDto.setId( area.getId() );
+        areaSimpleDto.setName( area.getName() );
+
         return areaSimpleDto;
     }
 
@@ -39,6 +45,13 @@ public class AreaSimpleMapperImpl implements AreaSimpleMapper {
     public Area partialUpdate(AreaSimpleDto areaSimpleDto, Area area) {
         if ( areaSimpleDto == null ) {
             return area;
+        }
+
+        if ( areaSimpleDto.getId() != null ) {
+            area.setId( areaSimpleDto.getId() );
+        }
+        if ( areaSimpleDto.getName() != null ) {
+            area.setName( areaSimpleDto.getName() );
         }
 
         return area;
