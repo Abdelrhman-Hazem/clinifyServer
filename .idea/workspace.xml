@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2277e70d-aa59-43a8-b7d4-8246f8c339c1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/clinify/repositories/ClinicRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/clinify/repositories/DoctorRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/clinify/repositories/DoctorSpecifications.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/gov/iti/jets/clinify/repositories/FlexibleDoctorSearchStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/clinifyServer.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/ClinifyApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/controllers/AASampleController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/AppointmentMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/AppointmentMapperImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/AppointmentWithoutRatingMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/AppointmentWithoutRatingMapperImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/AreaMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/AreaMapperImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/AreaSimpleMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/AreaSimpleMapperImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/CityMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/CityMapperImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/CitySimpleMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/CitySimpleMapperImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/ClinicMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/ClinicMapperImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/ClinicSimpleMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/ClinicSimpleMapperImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/DoctorMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/DoctorMapperImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/DoctorSimpleMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/DoctorSimpleMapperImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/DoctorSpecializationMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/DoctorSpecializationMapperImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/DoctorSpecializationSimpleMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/DoctorSpecializationSimpleMapperImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/DoctorTitleMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/DoctorTitleMapperImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/DoctorTitleSimpleMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/DoctorTitleSimpleMapperImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/PatientDocumentMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/PatientDocumentMapperImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/PatientMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/PatientMapperImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/PatientSimpleMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/mappers/PatientSimpleMapperImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/dtos/AppointmentDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/dtos/AppointmentWithoutRatingDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/dtos/AreaDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/dtos/AreaSimpleDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/dtos/CityDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/dtos/CitySimpleDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/dtos/ClinicDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/dtos/ClinicSimpleDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/dtos/DoctorDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/dtos/DoctorSimpleDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/dtos/DoctorSpecializationDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/dtos/DoctorSpecializationSimpleDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/dtos/DoctorTitleDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/dtos/DoctorTitleSimpleDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/dtos/PatientDocumentDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/dtos/PatientDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/dtos/PatientSimpleDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/entities/Appointment.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/entities/Area.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/entities/City.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/entities/Clinic.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/entities/Doctor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/entities/DoctorSpecialization.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/entities/DoctorTitle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/entities/Patient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/models/entities/PatientDocument.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/repositories/AASamplerepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/services/AASampleService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gov/iti/jets/clinify/utils/AASampleUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/Appointment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/Area.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/City.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/Clinic.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/Doctor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/DoctorSpecialization.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/DoctorTitle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/Patient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/PatientDocument.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/gov/iti/jets/clinify/mappers/AppointmentMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/gov/iti/jets/clinify/mappers/AppointmentWithoutRatingMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/gov/iti/jets/clinify/mappers/AreaMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/gov/iti/jets/clinify/mappers/AreaSimpleMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/gov/iti/jets/clinify/mappers/CityMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/gov/iti/jets/clinify/mappers/CitySimpleMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/gov/iti/jets/clinify/mappers/ClinicMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/gov/iti/jets/clinify/mappers/ClinicSimpleMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/gov/iti/jets/clinify/mappers/DoctorMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/gov/iti/jets/clinify/mappers/DoctorSimpleMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/gov/iti/jets/clinify/mappers/DoctorSpecializationMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/gov/iti/jets/clinify/mappers/DoctorSpecializationSimpleMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/gov/iti/jets/clinify/mappers/DoctorTitleMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/gov/iti/jets/clinify/mappers/DoctorTitleSimpleMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/gov/iti/jets/clinify/mappers/PatientDocumentMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/gov/iti/jets/clinify/mappers/PatientMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/gov/iti/jets/clinify/mappers/PatientSimpleMapperImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/gov/iti/jets/clinify/ClinifyApplicationTests.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2RN1EoaGjgOPblSDEtda3eVN8fj" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="ClinifyApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="clinify" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="gov.iti.jets.clinify.ClinifyApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2277e70d-aa59-43a8-b7d4-8246f8c339c1" name="Changes" comment="" />
+      <created>1687075619049</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1687075619049</updated>
+      <workItem from="1687075621517" duration="4111000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
