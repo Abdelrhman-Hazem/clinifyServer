@@ -27,4 +27,8 @@ public class DoctorService extends BaseServiceImp<Doctor, DoctorDto>{
         return Mappers.getMapper(DoctorMapper.class);
     }
 
+    public DoctorDto findByPhoneNumber(String phone){
+        return mapper().toDto(doctorRepository.findByPhoneNumber(phone));
+    }
+
 }

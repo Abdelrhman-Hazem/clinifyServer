@@ -5,15 +5,13 @@ import gov.iti.jets.clinify.models.entities.DoctorSpecialization;
 import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
-public interface DoctorSpecializationMapper {
-    DoctorSpecialization toEntity(DoctorSpecializationDto doctorSpecializationDto);
+public interface DoctorSpecializationMapper extends BaseMapper<DoctorSpecialization, DoctorSpecializationDto>{
 
     @AfterMapping
     default void linkDoctors(@MappingTarget DoctorSpecialization doctorSpecialization) {
         doctorSpecialization.getDoctors().forEach(doctor -> doctor.setDoctorSpecialization(doctorSpecialization));
     }
 
-    DoctorSpecializationDto toDto(DoctorSpecialization doctorSpecialization);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     DoctorSpecialization partialUpdate(DoctorSpecializationDto doctorSpecializationDto, @MappingTarget DoctorSpecialization doctorSpecialization);

@@ -1,6 +1,5 @@
 package gov.iti.jets.clinify.controllers;
 
-import gov.iti.jets.clinify.mappers.BaseMapper;
 import gov.iti.jets.clinify.models.dtos.BaseDto;
 import gov.iti.jets.clinify.models.entities.BaseEntity;
 import gov.iti.jets.clinify.services.BaseServiceImp;
@@ -10,12 +9,12 @@ import gov.iti.jets.clinify.utils.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
+@CrossOrigin
 public class BaseController<E extends BaseEntity, D extends BaseDto>{
 
 	@Autowired

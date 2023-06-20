@@ -20,10 +20,9 @@ import java.util.Set;
 @Table(name="doctor_title"
     ,catalog="clinify"
 )
-public class DoctorTitle  implements java.io.Serializable {
+public class DoctorTitle extends BaseEntity implements java.io.Serializable {
 
 
-     private Integer id;
      private String name;
      private Set<Doctor> doctors = new HashSet(0);
 
@@ -37,18 +36,6 @@ public class DoctorTitle  implements java.io.Serializable {
     public DoctorTitle(String name, Set<Doctor> doctors) {
        this.name = name;
        this.doctors = doctors;
-    }
-   
-     @Id @GeneratedValue(strategy=IDENTITY)
-
-    
-    @Column(name="id", unique=true, nullable=false)
-    public Integer getId() {
-        return this.id;
-    }
-    
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     
