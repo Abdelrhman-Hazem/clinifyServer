@@ -22,10 +22,9 @@ import java.util.Set;
 @Table(name="area"
     ,catalog="clinify"
 )
-public class Area  implements java.io.Serializable {
+public class Area extends BaseEntity  implements java.io.Serializable {
 
 
-     private Integer id;
      private City city;
      private String name;
      private Set<Clinic> clinics = new HashSet(0);
@@ -45,18 +44,7 @@ public class Area  implements java.io.Serializable {
        this.clinics = clinics;
        this.patients = patients;
     }
-   
-     @Id @GeneratedValue(strategy=IDENTITY)
 
-    
-    @Column(name="id", unique=true, nullable=false)
-    public Integer getId() {
-        return this.id;
-    }
-    
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="city_id", nullable=false)

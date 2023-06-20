@@ -1,5 +1,6 @@
 package gov.iti.jets.clinify.models.dtos;
 
+import gov.iti.jets.clinify.models.entities.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,8 +15,8 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CityDto implements Serializable {
+public class CityDto extends BaseDto implements Serializable {
     Integer id;
     String name;
-    Set<AreaDto> areas;
+//    Set<AreaDto> areas;
 }

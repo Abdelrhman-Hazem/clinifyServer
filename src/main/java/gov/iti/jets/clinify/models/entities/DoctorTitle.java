@@ -70,9 +70,6 @@ public class DoctorTitle  implements java.io.Serializable {
         this.doctors = doctors;
     }
 
-
-
-
 }
 
 

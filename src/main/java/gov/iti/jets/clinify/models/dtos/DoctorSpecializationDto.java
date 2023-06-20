@@ -17,5 +17,5 @@ import java.util.Set;
 public class DoctorSpecializationDto implements Serializable {
     Integer id;
     String name;
-    Set<DoctorDto> doctors;
+//    Set<DoctorDto> doctors;
 }

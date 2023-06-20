@@ -24,10 +24,7 @@ import java.util.Set;
     ,catalog="clinify"
     , uniqueConstraints = @UniqueConstraint(columnNames="phone_number") 
 )
-public class Doctor  implements java.io.Serializable {
-
-
-     private Integer id;
+public class Doctor extends BaseEntity  implements java.io.Serializable {
      private DoctorTitle doctorTitle;
      private Clinic clinic;
      private DoctorSpecialization doctorSpecialization;
@@ -66,17 +63,7 @@ public class Doctor  implements java.io.Serializable {
        this.appointments = appointments;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
 
-    
-    @Column(name="id", unique=true, nullable=false)
-    public Integer getId() {
-        return this.id;
-    }
-    
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="title_id", nullable=false)

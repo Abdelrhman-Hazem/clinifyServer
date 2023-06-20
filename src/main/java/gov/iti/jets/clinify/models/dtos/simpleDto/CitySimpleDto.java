@@ -1,4 +1,4 @@
-package gov.iti.jets.clinify.models.dtos;
+package gov.iti.jets.clinify.models.dtos.simpleDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

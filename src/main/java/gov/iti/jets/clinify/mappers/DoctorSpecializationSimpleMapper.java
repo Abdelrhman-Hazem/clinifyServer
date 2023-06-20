@@ -1,6 +1,6 @@
 package gov.iti.jets.clinify.mappers;
 
-import gov.iti.jets.clinify.models.dtos.DoctorSpecializationSimpleDto;
+import gov.iti.jets.clinify.models.dtos.simpleDto.DoctorSpecializationSimpleDto;
 import gov.iti.jets.clinify.models.entities.DoctorSpecialization;
 import org.mapstruct.*;
 

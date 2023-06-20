@@ -14,16 +14,17 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DoctorDto implements Serializable {
+public class DoctorDto extends BaseDto implements Serializable {
+
     Integer id;
-    DoctorTitleSimpleDto doctorTitle;
-    ClinicSimpleDto clinic;
-    DoctorSpecializationSimpleDto doctorSpecialization;
+    DoctorTitleDto doctorTitle;
+    ClinicDto clinic;
+    DoctorSpecializationDto doctorSpecialization;
     String fullName;
     String phoneNumber;
     int ticketPrice;
     Double averageRating;
     Integer ratingCount;
     String status;
-    Set<AppointmentWithoutRatingDto> appointments;
+//    Set<AppointmentWithoutRatingDto> appointments;
 }

@@ -16,8 +16,8 @@ import java.util.Set;
 @NoArgsConstructor
 public class ClinicDto implements Serializable {
     Integer id;
-    AreaSimpleDto area;
-    CitySimpleDto city;
+    AreaDto area;
+    CityDto city;
     String username;
     String password;
     String name;
@@ -26,5 +26,5 @@ public class ClinicDto implements Serializable {
     String address;
     String status;
     Boolean isDeleted;
-    Set<DoctorDto> doctors;
+//    Set<DoctorDto> doctors;
 }

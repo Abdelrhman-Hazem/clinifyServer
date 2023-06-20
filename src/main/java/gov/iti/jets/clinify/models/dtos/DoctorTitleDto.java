@@ -15,7 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DoctorTitleDto implements Serializable {
-    Integer id;
-    String name;
-    Set<DoctorDto> doctors;
+     Integer id;
+     String name;
+//    Set<DoctorDto> doctors;
 }

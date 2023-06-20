@@ -16,9 +16,10 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PatientDto implements Serializable {
+
     Integer id;
-    AreaSimpleDto area;
-    CitySimpleDto city;
+    AreaDto area;
+    CityDto city;
     String phoneNumber;
     String password;
     String fullName;
@@ -28,6 +29,7 @@ public class PatientDto implements Serializable {
     String address;
     Integer preperationTime;
     Boolean isDeleted;
-    Set<PatientDocumentDto> patientDocuments;
-    Set<AppointmentDto> appointments;
+//    Set<PatientDocumentDto> patientDocuments;
+//    Set<AppointmentDto> appointments;
+
 }

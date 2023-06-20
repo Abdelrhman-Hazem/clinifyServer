@@ -2,19 +2,18 @@ package gov.iti.jets.clinify.mappers;
 
 import gov.iti.jets.clinify.models.dtos.DoctorDto;
 import gov.iti.jets.clinify.models.entities.Doctor;
+import gov.iti.jets.clinify.utils.PageResult;
 import org.mapstruct.*;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, uses = {DoctorTitleSimpleMapper.class, ClinicSimpleMapper.class, DoctorSpecializationSimpleMapper.class, AppointmentWithoutRatingMapper.class})
-public interface DoctorMapper {
-    Doctor toEntity(DoctorDto doctorDto);
+import java.util.ArrayList;
 
+import static java.util.stream.Collectors.toCollection;
+
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
+public interface DoctorMapper extends BaseMapper<Doctor, DoctorDto> {
     @AfterMapping
     default void linkAppointments(@MappingTarget Doctor doctor) {
         doctor.getAppointments().forEach(appointment -> appointment.setDoctor(doctor));
     }
 
-    DoctorDto toDto(Doctor doctor);
-
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Doctor partialUpdate(DoctorDto doctorDto, @MappingTarget Doctor doctor);
 }

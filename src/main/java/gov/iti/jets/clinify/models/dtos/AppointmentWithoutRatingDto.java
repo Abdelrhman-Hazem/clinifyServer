@@ -17,8 +17,8 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class AppointmentWithoutRatingDto implements Serializable {
     Integer id;
-    DoctorSimpleDto doctor;
-    PatientSimpleDto patient;
+    DoctorDto doctor;
+    PatientDto patient;
     Timestamp date;
     Time startTime;
     Time endTime;

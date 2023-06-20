@@ -22,7 +22,6 @@ import java.util.Set;
 )
 public class DoctorSpecialization  implements java.io.Serializable {
 
-
      private Integer id;
      private String name;
      private Set<Doctor> doctors = new HashSet(0);

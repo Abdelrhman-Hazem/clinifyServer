@@ -6,7 +6,7 @@ import gov.iti.jets.clinify.models.dtos.AppointmentWithoutRatingDto;
 import gov.iti.jets.clinify.models.entities.Appointment;
 import org.mapstruct.*;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, uses = {DoctorSimpleMapper.class, PatientSimpleMapper.class})
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface AppointmentWithoutRatingMapper {
     Appointment toEntity(AppointmentWithoutRatingDto appointmentWithoutRatingDto);
 

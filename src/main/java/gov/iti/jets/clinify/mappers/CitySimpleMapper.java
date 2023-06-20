@@ -1,6 +1,6 @@
 package gov.iti.jets.clinify.mappers;
 
-import gov.iti.jets.clinify.models.dtos.CitySimpleDto;
+import gov.iti.jets.clinify.models.dtos.simpleDto.CitySimpleDto;
 import gov.iti.jets.clinify.models.entities.City;
 import org.mapstruct.*;
 

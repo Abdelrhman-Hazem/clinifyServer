@@ -4,7 +4,7 @@ import gov.iti.jets.clinify.models.dtos.DoctorSpecializationDto;
 import gov.iti.jets.clinify.models.entities.DoctorSpecialization;
 import org.mapstruct.*;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, uses = {DoctorMapper.class})
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface DoctorSpecializationMapper {
     DoctorSpecialization toEntity(DoctorSpecializationDto doctorSpecializationDto);
 

@@ -1,6 +1,6 @@
 package gov.iti.jets.clinify.mappers;
 
-import gov.iti.jets.clinify.models.dtos.AreaSimpleDto;
+import gov.iti.jets.clinify.models.dtos.simpleDto.AreaSimpleDto;
 import gov.iti.jets.clinify.models.entities.Area;
 import org.mapstruct.*;
 
