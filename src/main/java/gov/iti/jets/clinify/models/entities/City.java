@@ -20,7 +20,7 @@ import java.util.Set;
 @Table(name="city"
     ,catalog="clinify"
 )
-public class City  extends BaseEntity implements java.io.Serializable {
+public class City  extends BaseEntity {
 
 
      private String name;

@@ -14,7 +14,7 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AreaDto extends BaseDto implements Serializable {
+public class AreaDto extends BaseDto {
     Integer id;
     CityDto city;
     String name;

@@ -1,5 +1,6 @@
 package gov.iti.jets.clinify.models.dtos.simpleDto;
 
+import gov.iti.jets.clinify.models.dtos.BaseDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DoctorSimpleDto implements Serializable {
+public class DoctorSimpleDto extends BaseDto {
     Integer id;
     String fullName;
     String phoneNumber;

@@ -14,7 +14,7 @@ import java.sql.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PatientDocumentDto implements Serializable {
+public class PatientDocumentDto extends BaseDto {
     Integer id;
     Date date;
     String documentUrl;

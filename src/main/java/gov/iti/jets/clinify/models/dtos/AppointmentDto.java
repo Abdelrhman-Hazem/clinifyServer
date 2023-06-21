@@ -15,12 +15,12 @@ import java.sql.Timestamp;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AppointmentDto implements Serializable {
+public class AppointmentDto extends BaseDto {
     Integer id;
     DoctorDto doctor;
     PatientDto patient;
     Timestamp date;
-    Time startTime;
+//    Time startTime;
     Time endTime;
     String creditCardLastFourDigits;
     String status;

@@ -5,7 +5,7 @@ import gov.iti.jets.clinify.models.entities.Clinic;
 import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
-public interface ClinicMapper {
+public interface ClinicMapper extends BaseMapper<Clinic, ClinicDto>{
     Clinic toEntity(ClinicDto clinicDto);
 
     @AfterMapping

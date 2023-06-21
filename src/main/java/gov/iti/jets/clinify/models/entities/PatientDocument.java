@@ -22,7 +22,7 @@ import java.sql.Date;
 @Table(name="patient_document"
     ,catalog="clinify"
 )
-public class PatientDocument  implements java.io.Serializable {
+public class PatientDocument  extends BaseEntity {
 
 
      private Integer id;

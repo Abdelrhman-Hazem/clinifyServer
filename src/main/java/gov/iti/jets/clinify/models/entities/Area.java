@@ -22,7 +22,7 @@ import java.util.Set;
 @Table(name="area"
     ,catalog="clinify"
 )
-public class Area extends BaseEntity  implements java.io.Serializable {
+public class Area extends BaseEntity {
 
 
      private City city;

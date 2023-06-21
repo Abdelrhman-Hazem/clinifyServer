@@ -14,7 +14,7 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DoctorTitleDto extends BaseDto implements Serializable {
+public class DoctorTitleDto extends BaseDto {
      Integer id;
      String name;
 //    Set<DoctorDto> doctors;

@@ -1,4 +1,6 @@
 package gov.iti.jets.clinify.models.dtos;
 
-public class BaseDto  {
+import java.io.Serializable;
+
+public class BaseDto implements Serializable {
 }

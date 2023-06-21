@@ -20,7 +20,7 @@ import java.util.Set;
 @Table(name="doctor_title"
     ,catalog="clinify"
 )
-public class DoctorTitle extends BaseEntity implements java.io.Serializable {
+public class DoctorTitle extends BaseEntity {
 
 
      private String name;

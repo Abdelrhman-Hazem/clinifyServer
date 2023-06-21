@@ -24,7 +24,7 @@ import java.util.Set;
     ,catalog="clinify"
     , uniqueConstraints = {@UniqueConstraint(columnNames="email"), @UniqueConstraint(columnNames="phone_number")} 
 )
-public class Clinic  implements java.io.Serializable {
+public class Clinic  extends BaseEntity {
 
 
      private Integer id;

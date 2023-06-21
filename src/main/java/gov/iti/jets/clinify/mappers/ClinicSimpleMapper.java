@@ -5,7 +5,7 @@ import gov.iti.jets.clinify.models.entities.Clinic;
 import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
-public interface ClinicSimpleMapper {
+public interface ClinicSimpleMapper extends BaseMapper<Clinic, ClinicSimpleDto>{
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Clinic partialUpdate(ClinicSimpleDto clinicSimpleDto, @MappingTarget Clinic clinic);

@@ -5,7 +5,7 @@ import gov.iti.jets.clinify.models.entities.Doctor;
 import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
-public interface DoctorSimpleMapper {
+public interface DoctorSimpleMapper extends BaseMapper<Doctor, DoctorSimpleDto>{
     Doctor toEntity(DoctorSimpleDto doctorSimpleDto);
 
     DoctorSimpleDto toDto(Doctor doctor);
