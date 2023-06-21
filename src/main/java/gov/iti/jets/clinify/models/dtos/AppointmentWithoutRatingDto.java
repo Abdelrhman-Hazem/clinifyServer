@@ -20,7 +20,7 @@ public class AppointmentWithoutRatingDto extends BaseDto {
     DoctorDto doctor;
     PatientDto patient;
     Timestamp date;
-//    Time startTime;
+    Time startTime;
     Time endTime;
     String creditCardLastFourDigits;
 }

@@ -30,7 +30,7 @@ public class Appointment  extends BaseEntity {
      private Doctor doctor;
      private Patient patient;
      private Timestamp date;
-//     private Time startTime;
+     private Time startTime;
      private Time endTime;
      private String creditCardLastFourDigits;
      private String status;
@@ -44,14 +44,14 @@ public class Appointment  extends BaseEntity {
     public Appointment(Doctor doctor, Timestamp date, Time startTime, Time endTime) {
         this.doctor = doctor;
         this.date = date;
-//        this.startTime = startTime;
+        this.startTime = startTime;
         this.endTime = endTime;
     }
     public Appointment(Doctor doctor, Patient patient, Timestamp date, Time startTime, Time endTime, String creditCardLastFourDigits, String status, Integer rating, String description) {
        this.doctor = doctor;
        this.patient = patient;
        this.date = date;
-//       this.startTime = startTime;
+       this.startTime = startTime;
        this.endTime = endTime;
        this.creditCardLastFourDigits = creditCardLastFourDigits;
        this.status = status;
@@ -101,15 +101,15 @@ public class Appointment  extends BaseEntity {
         this.date = date;
     }
 
-//    @Temporal(TemporalType.TIME)
-//    @Column(name="start_time", nullable=false, length=8)
-//    public Time getStartTime() {
-//        return this.startTime;
-//    }
-//
-//    public void setStartTime(Time startTime) {
-//        this.startTime = startTime;
-//    }
+    @Temporal(TemporalType.TIME)
+    @Column(name="start_time", nullable=false, length=8)
+    public Time getStartTime() {
+        return this.startTime;
+    }
+
+    public void setStartTime(Time startTime) {
+        this.startTime = startTime;
+    }
 
     @Temporal(TemporalType.TIME)
     @Column(name="end_time", nullable=false, length=8)
