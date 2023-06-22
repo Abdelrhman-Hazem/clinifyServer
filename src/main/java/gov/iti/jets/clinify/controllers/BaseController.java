@@ -13,13 +13,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @CrossOrigin
 public class BaseController<E extends BaseEntity, D extends BaseDto>{
 
 	@Autowired
 	private BaseServiceImp<E, D> baseService;
-
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
 	public D get(@PathVariable(value = "id") Integer id) {
 		return baseService.findById(id);

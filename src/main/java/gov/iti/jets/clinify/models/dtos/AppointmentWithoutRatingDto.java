@@ -1,9 +1,6 @@
 package gov.iti.jets.clinify.models.dtos;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Value;
+import lombok.*;
 
 import java.io.Serializable;
 import java.sql.Time;
@@ -15,6 +12,7 @@ import java.sql.Timestamp;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class AppointmentWithoutRatingDto extends BaseDto {
     Integer id;
     DoctorDto doctor;

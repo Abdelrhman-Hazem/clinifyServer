@@ -13,10 +13,22 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/doctors")
+@CrossOrigin
 public class DoctorController extends BaseController<Doctor, DoctorDto> {
 
     @Autowired
     private DoctorService doctorService;
+
+
+    @PostMapping( "/addDoctor")
+    public ResponseEntity<MessageResponse> addDoctor(@RequestBody DoctorDto dto) {
+        DoctorDto doctorDto = this.doctorService.findByPhoneNumber(dto.getPhoneNumber());
+        if(doctorDto != null && !doctorDto.getId().equals(dto.getId())){
+            throw new FieldNotUniqueException("phoneNumber", "Already Exists");
+        }
+        doctorService.save(dto);
+        return new ResponseEntity<>(new MessageResponse("Doctor Added Successfully"), HttpStatus.OK);
+    }
 
     @PutMapping( "/updateDoctor")
     public ResponseEntity<MessageResponse> updateDoctor(@RequestBody DoctorDto dto) {
