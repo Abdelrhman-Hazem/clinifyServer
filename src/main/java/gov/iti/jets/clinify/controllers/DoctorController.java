@@ -71,9 +71,6 @@ public class DoctorController extends BaseController<Doctor, DoctorDto> {
         return doctorService.getDoctorsDataPage(queryUtil);
     }
 
-    public static final String DIRECTORY =
-            System.getProperty("user.dir") + "/src/main/resources/images/doctorImages/";
-
 //    @PostMapping("/upload")
 //    public ResponseEntity<List<String>> uploadFiles(@RequestParam("files")List<MultipartFile> multipartFiles) throws IOException {
 //        Resource resource = resourceLoader.getResource("classpath:filename.txt");
