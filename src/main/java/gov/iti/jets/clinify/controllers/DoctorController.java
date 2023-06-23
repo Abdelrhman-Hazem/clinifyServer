@@ -43,9 +43,9 @@ public class DoctorController extends BaseController<Doctor, DoctorDto> {
     @Autowired
     private DoctorService doctorService;
 
-    @Autowired
-    private  ResourceLoader resourceLoader;
-
+//    @Autowired
+//    private  ResourceLoader resourceLoader;
+//
 
 
 
@@ -55,8 +55,8 @@ public class DoctorController extends BaseController<Doctor, DoctorDto> {
         if(doctorDto != null && !doctorDto.getId().equals(dto.getId())){
             throw new FieldNotUniqueException("phoneNumber", "Already Exists");
         }
-        doctorService.save(dto);
-        return new ResponseEntity<>(new MessageResponse("Doctor Added Successfully"), HttpStatus.OK);
+        DoctorDto savedDto  = doctorService.saveDoctor(dto);
+        return new ResponseEntity<>(new MessageResponse(savedDto.getImgUrl()), HttpStatus.OK);
     }
 
     @PutMapping( "/updateDoctor")
@@ -65,8 +65,8 @@ public class DoctorController extends BaseController<Doctor, DoctorDto> {
         if(doctorDto != null && !doctorDto.getId().equals(dto.getId())){
             throw new FieldNotUniqueException("phoneNumber", "Already Exists");
         }
-        doctorService.save(dto);
-        return new ResponseEntity<>(new MessageResponse("Doctor Updated Successfully"), HttpStatus.OK);
+        DoctorDto savedDto = doctorService.saveDoctor(dto);
+        return new ResponseEntity<>(new MessageResponse(savedDto.getImgUrl()), HttpStatus.OK);
     }
 
     @RequestMapping(value="/getPage2", method = RequestMethod.GET)

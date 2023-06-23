@@ -35,8 +35,10 @@ public class Doctor extends BaseEntity {
      private Integer ratingCount;
      private String status;
      private Boolean isDeleted;
+    String imgUrl;
 
-     private Integer avgMinutesPerPatient;
+
+    private Integer avgMinutesPerPatient;
      private Set<Appointment> appointments = new HashSet(0);
 
     public Doctor() {
@@ -177,7 +179,16 @@ public class Doctor extends BaseEntity {
         this.avgMinutesPerPatient = avgMinutesPerPatient;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="doctor")
+    @Column(name="img_url")
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="doctor")
     public Set<Appointment> getAppointments() {
         return this.appointments;
     }

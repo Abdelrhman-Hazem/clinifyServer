@@ -32,6 +32,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -159,5 +160,22 @@ public class DoctorService extends BaseServiceImp<Doctor, DoctorDto> {
         }
         return convertedFile;
     }
+
+    public DoctorDto saveDoctor(DoctorDto dto) {
+        String arr[]=dto.getImgUrl().split("[.]");
+
+        if(dto.getId()==null ||dto.getId()==0 ){
+            Doctor doctor= Repository().save(mapper().toEntity(dto));
+            arr[0]=""+doctor.getId();
+            dto.setId(doctor.getId());
+            dto.setImgUrl(arr[0]+"."+arr[1]);
+        }else{
+            arr[0]=""+dto.getId();
+            dto.setImgUrl(arr[0]+"."+arr[1]);
+
+        }
+        return mapper().toDto(Repository().save(mapper().toEntity(dto)));
+    }
+
 
 }
