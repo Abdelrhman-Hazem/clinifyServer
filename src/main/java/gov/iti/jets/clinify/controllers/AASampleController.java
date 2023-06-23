@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/sample")
+//@RequestMapping("")
 public class AASampleController {
 
-    @GetMapping
+    @GetMapping("/")
     public String sayHello(){
         return "Hello from clinify";
     }
