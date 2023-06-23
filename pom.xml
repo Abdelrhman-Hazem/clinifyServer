@@ -76,35 +76,35 @@
 	<build>
 		<plugins>
 			<!-- <GENERATE Entities> -->
-<!--			<plugin>-->
-<!--              <groupId>org.hibernate.tool</groupId>-->
-<!--              <artifactId>hibernate-tools-maven</artifactId>-->
-<!--              <version>6.1.7.Final</version>-->
-<!--              <dependencies>-->
-<!--                <dependency>-->
-<!--                  <groupId>org.hibernate.tool</groupId>-->
-<!--                  <artifactId>hibernate-tools-orm</artifactId>-->
-<!--                  <version>6.1.7.Final</version>-->
-<!--                </dependency>-->
-<!--                <dependency>-->
-<!--                  <groupId>mysql</groupId>-->
-<!--                  <artifactId>mysql-connector-java</artifactId>-->
-<!--                  <version>8.0.31</version>-->
-<!--                </dependency>-->
-<!--              </dependencies>-->
-<!--              <executions>-->
-<!--                <execution>-->
-<!--                  <id>entity-generation</id>-->
-<!--                  <phase>generate-sources</phase>-->
-<!--                  <goals>-->
-<!--                    <goal>hbm2java</goal>-->
-<!--                  </goals>-->
-<!--                  <configuration>-->
-<!--                    <ejb3>true</ejb3>-->
-<!--                  </configuration>-->
-<!--                </execution>-->
-<!--              </executions>-->
-<!--            </plugin>-->
+			<plugin>
+              <groupId>org.hibernate.tool</groupId>
+              <artifactId>hibernate-tools-maven</artifactId>
+              <version>6.1.7.Final</version>
+              <dependencies>
+                <dependency>
+                  <groupId>org.hibernate.tool</groupId>
+                  <artifactId>hibernate-tools-orm</artifactId>
+                  <version>6.1.7.Final</version>
+                </dependency>
+                <dependency>
+                  <groupId>mysql</groupId>
+                  <artifactId>mysql-connector-java</artifactId>
+                  <version>8.0.31</version>
+                </dependency>
+              </dependencies>
+              <executions>
+                <execution>
+                  <id>entity-generation</id>
+                  <phase>generate-sources</phase>
+                  <goals>
+                    <goal>hbm2java</goal>
+                  </goals>
+                  <configuration>
+                    <ejb3>true</ejb3>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

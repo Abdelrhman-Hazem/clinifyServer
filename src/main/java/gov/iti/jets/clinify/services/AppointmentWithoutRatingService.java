@@ -1,9 +1,7 @@
 package gov.iti.jets.clinify.services;
 
-import gov.iti.jets.clinify.mappers.AppointmentMapper;
 import gov.iti.jets.clinify.mappers.AppointmentWithoutRatingMapper;
 import gov.iti.jets.clinify.mappers.BaseMapper;
-import gov.iti.jets.clinify.models.dtos.AppointmentDto;
 import gov.iti.jets.clinify.models.dtos.AppointmentWithoutRatingDto;
 import gov.iti.jets.clinify.models.entities.Appointment;
 import gov.iti.jets.clinify.repositories.AppointmentRepository;
