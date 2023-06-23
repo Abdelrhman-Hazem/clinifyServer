@@ -9,7 +9,9 @@ import gov.iti.jets.clinify.utils.MessageResponse;
 import gov.iti.jets.clinify.utils.PageQueryUtil;
 import gov.iti.jets.clinify.utils.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +39,11 @@ public class DoctorController extends BaseController<Doctor, DoctorDto> {
     @Autowired
     private DoctorService doctorService;
 
+    @Autowired
+    private  ResourceLoader resourceLoader;
+
+
+
 
     @PostMapping( "/addDoctor")
     public ResponseEntity<MessageResponse> addDoctor(@RequestBody DoctorDto dto) {
@@ -58,9 +65,8 @@ public class DoctorController extends BaseController<Doctor, DoctorDto> {
         return new ResponseEntity<>(new MessageResponse("Doctor Updated Successfully"), HttpStatus.OK);
     }
 
-    @Override
-    @RequestMapping(value="/getPage", method = RequestMethod.GET)
-    public PageResult<DoctorDto> getDataPage(@RequestParam int page, @RequestParam int limit) {
+    @RequestMapping(value="/getPage2", method = RequestMethod.GET)
+    public PageResult<DoctorDto> getDataPage2(@RequestParam int page, @RequestParam int limit) {
         PageQueryUtil queryUtil = new PageQueryUtil(page, limit);
         return doctorService.getDoctorsDataPage(queryUtil);
     }
@@ -68,28 +74,52 @@ public class DoctorController extends BaseController<Doctor, DoctorDto> {
     public static final String DIRECTORY =
             System.getProperty("user.dir") + "/src/main/resources/images/doctorImages/";
 
+//    @PostMapping("/upload")
+//    public ResponseEntity<List<String>> uploadFiles(@RequestParam("files")List<MultipartFile> multipartFiles) throws IOException {
+//        Resource resource = resourceLoader.getResource("classpath:filename.txt");
+//
+//        System.out.println("hiii");
+//        List<String> filenames = new ArrayList<>();
+//        for(MultipartFile file : multipartFiles) {
+//            String filename = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
+//            Path fileStorage = Paths.get(DIRECTORY, filename).toAbsolutePath().normalize();
+//            copy(file.getInputStream(), fileStorage, REPLACE_EXISTING);
+//            filenames.add(filename);
+//        }
+//        return ResponseEntity.ok().body(filenames);
+//    }
+//
+//    @GetMapping("/download/{filename}")
+//    public ResponseEntity<Resource> downloadFiles(@PathVariable("filename") String filename) throws IOException {
+//        Path filePath = Paths.get(DIRECTORY).toAbsolutePath().normalize().resolve(filename);
+//        if(!Files.exists(filePath)) {
+//            throw new FileNotFoundException(filename + " was not found on the server");
+//        }
+//        Resource resource = new UrlResource(filePath.toUri());
+//        return new ResponseEntity<>(resource,HttpStatus.OK);
+//    }
+
+
     @PostMapping("/upload")
-    public ResponseEntity<List<String>> uploadFiles(@RequestParam("files")List<MultipartFile> multipartFiles) throws IOException {
-        System.out.println("hiii");
-        List<String> filenames = new ArrayList<>();
-        for(MultipartFile file : multipartFiles) {
-            String filename = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
-            Path fileStorage = Paths.get(DIRECTORY, filename).toAbsolutePath().normalize();
-            copy(file.getInputStream(), fileStorage, REPLACE_EXISTING);
-            filenames.add(filename);
-        }
-        return ResponseEntity.ok().body(filenames);
+    public ResponseEntity<MessageResponse> uploadFile(@RequestBody MultipartFile file ) {
+        return new ResponseEntity<>(new MessageResponse(doctorService.uploadFile(file)) , HttpStatus.OK);
     }
 
-    @GetMapping("/download/{filename}")
-    public ResponseEntity<Resource> downloadFiles(@PathVariable("filename") String filename) throws IOException {
-        Path filePath = Paths.get(DIRECTORY).toAbsolutePath().normalize().resolve(filename);
-        if(!Files.exists(filePath)) {
-            throw new FileNotFoundException(filename + " was not found on the server");
+    @GetMapping("/download/{fileName}")
+    public ResponseEntity<ByteArrayResource> downloadFile(@PathVariable String fileName) {
+        try {
+            byte[] data = doctorService.downloadFile(fileName);
+            ByteArrayResource resource = new ByteArrayResource(data);
+            return ResponseEntity
+                    .ok()
+                    .contentLength(data.length)
+                    .header("Content-type", "application/octet-stream")
+                    .header("Content-disposition", "attachment; filename=\"" + fileName + "\"")
+                    .body(resource);
+        }catch (Exception ex){
+//            log.info(ex.getMessage());
+            return null ;
         }
-        Resource resource = new UrlResource(filePath.toUri());
-        return new ResponseEntity<>(resource,HttpStatus.OK);
     }
-
 
 }
