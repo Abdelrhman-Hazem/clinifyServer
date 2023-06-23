@@ -1,4 +1,4 @@
-package gov.iti.jets.clinify;
+package gov.iti.jets.clinify.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
