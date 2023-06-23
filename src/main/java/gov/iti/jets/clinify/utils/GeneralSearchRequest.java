@@ -1,16 +1,12 @@
 package gov.iti.jets.clinify.utils;
 
 public class GeneralSearchRequest {
-    private String filterValue;
     private String sortDirection;
     private String sortBy;
 
-    public String getFilterValue() {
-        return filterValue;
-    }
-
-    public void setFilterValue(String filterValue) {
-        this.filterValue = filterValue;
+    public GeneralSearchRequest(String sortDirection, String sortBy) {
+        this.sortDirection = sortDirection;
+        this.sortBy = sortBy;
     }
 
     public String getSortDirection() {
