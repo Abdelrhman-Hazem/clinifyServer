@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -24,11 +24,11 @@
 			<artifactId>mapstruct</artifactId>
 			<version>1.5.5.Final</version>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>org.mapstruct</groupId>-->
-<!--			<artifactId>mapstruct-processor</artifactId>-->
-<!--			<version>1.5.4.Final</version>-->
-<!--		</dependency>-->
+		<!--		<dependency>-->
+		<!--			<groupId>org.mapstruct</groupId>-->
+		<!--			<artifactId>mapstruct-processor</artifactId>-->
+		<!--			<version>1.5.4.Final</version>-->
+		<!--		</dependency>-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -68,7 +68,7 @@
 		<dependency>
 			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
-<!--			<version>7.0.2.Final</version>-->
+			<!--			<version>7.0.2.Final</version>-->
 		</dependency>
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
@@ -92,35 +92,35 @@
 	<build>
 		<plugins>
 			<!-- <GENERATE Entities> -->
-<!--			<plugin>-->
-<!--              <groupId>org.hibernate.tool</groupId>-->
-<!--              <artifactId>hibernate-tools-maven</artifactId>-->
-<!--              <version>6.1.7.Final</version>-->
-<!--              <dependencies>-->
-<!--                <dependency>-->
-<!--                  <groupId>org.hibernate.tool</groupId>-->
-<!--                  <artifactId>hibernate-tools-orm</artifactId>-->
-<!--                  <version>6.1.7.Final</version>-->
-<!--                </dependency>-->
-<!--                <dependency>-->
-<!--                  <groupId>mysql</groupId>-->
-<!--                  <artifactId>mysql-connector-java</artifactId>-->
-<!--                  <version>8.0.31</version>-->
-<!--                </dependency>-->
-<!--              </dependencies>-->
-<!--              <executions>-->
-<!--                <execution>-->
-<!--                  <id>entity-generation</id>-->
-<!--                  <phase>generate-sources</phase>-->
-<!--                  <goals>-->
-<!--                    <goal>hbm2java</goal>-->
-<!--                  </goals>-->
-<!--                  <configuration>-->
-<!--                    <ejb3>true</ejb3>-->
-<!--                  </configuration>-->
-<!--                </execution>-->
-<!--              </executions>-->
-<!--            </plugin>-->
+			<!--			<plugin>-->
+			<!--              <groupId>org.hibernate.tool</groupId>-->
+			<!--              <artifactId>hibernate-tools-maven</artifactId>-->
+			<!--              <version>6.1.7.Final</version>-->
+			<!--              <dependencies>-->
+			<!--                <dependency>-->
+			<!--                  <groupId>org.hibernate.tool</groupId>-->
+			<!--                  <artifactId>hibernate-tools-orm</artifactId>-->
+			<!--                  <version>6.1.7.Final</version>-->
+			<!--                </dependency>-->
+			<!--                <dependency>-->
+			<!--                  <groupId>mysql</groupId>-->
+			<!--                  <artifactId>mysql-connector-java</artifactId>-->
+			<!--                  <version>8.0.31</version>-->
+			<!--                </dependency>-->
+			<!--              </dependencies>-->
+			<!--              <executions>-->
+			<!--                <execution>-->
+			<!--                  <id>entity-generation</id>-->
+			<!--                  <phase>generate-sources</phase>-->
+			<!--                  <goals>-->
+			<!--                    <goal>hbm2java</goal>-->
+			<!--                  </goals>-->
+			<!--                  <configuration>-->
+			<!--                    <ejb3>true</ejb3>-->
+			<!--                  </configuration>-->
+			<!--                </execution>-->
+			<!--              </executions>-->
+			<!--            </plugin>-->
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

@@ -87,11 +87,12 @@ public abstract class BaseServiceImp<E extends BaseEntity, D extends BaseDto> im
 
     }
 
-    public Sort constructSortObject(GeneralSearchRequest generalSearchRequest, String defaultSortField) {
-        if (generalSearchRequest.getSortDirection() == null) {
-            return Sort.by(Direction.ASC, defaultSortField);
+    public Sort constructSortObject(String sortBy, String sortDirection, String defaultField ) {
+
+        if (sortDirection == null) {
+            return Sort.by(Direction.DESC, defaultField);
         }
-        return Sort.by(Direction.valueOf(generalSearchRequest.getSortDirection()), generalSearchRequest.getSortBy());
+        return Sort.by(Direction.valueOf(sortDirection), sortBy);
     }
 
 }

@@ -17,4 +17,9 @@ public class DoctorSearchDto {
     private City city;
     private Area area;
     private String clinicName;
+
+    //sort
+    private String sortDirection="DESC";
+    private String sortBy="averageRating";
+
 }

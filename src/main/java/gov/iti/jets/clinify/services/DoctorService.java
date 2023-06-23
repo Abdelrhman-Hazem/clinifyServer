@@ -12,6 +12,7 @@ import gov.iti.jets.clinify.models.dtos.DoctorSearchDto;
 import gov.iti.jets.clinify.models.entities.Doctor;
 import gov.iti.jets.clinify.repositories.BaseRepository;
 import gov.iti.jets.clinify.repositories.DoctorRepository;
+import gov.iti.jets.clinify.utils.GeneralSearchRequest;
 import gov.iti.jets.clinify.utils.PageQueryUtil;
 import gov.iti.jets.clinify.utils.PageResult;
 import jakarta.persistence.EntityManager;
@@ -28,6 +29,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -78,7 +80,8 @@ public class DoctorService extends BaseServiceImp<Doctor, DoctorDto> {
     }
 
     public PageResult<DoctorDto> searchDoctors(DoctorSearchDto doctorSearchDto, PageQueryUtil pageUtil) {
-        Pageable pageRequest = PageRequest.of(pageUtil.getPage() - 1, pageUtil.getLimit());
+        Sort doctorSort = constructSortObject(doctorSearchDto.getSortBy(),doctorSearchDto.getSortDirection(),"averageRating");
+        Pageable pageRequest = PageRequest.of(pageUtil.getPage() - 1, pageUtil.getLimit(), doctorSort);
         // Use the repository method with dynamic query creation based on the search criteria
         Page<Doctor> page = doctorRepository.findAll((root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
