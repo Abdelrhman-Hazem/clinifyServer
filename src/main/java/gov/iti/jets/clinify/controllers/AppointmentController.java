@@ -22,15 +22,15 @@ public class AppointmentController extends BaseController<Appointment, Appointme
         return appointmentService.findAllByPatientId(doctorId);
     }
 
-    @GetMapping(value = "/byDoctorId/{id}")
-    public List<AppointmentDto> getAllByDoctorId(@PathVariable(value = "id") Integer doctorId){
-        return appointmentService.findAllByDoctorId(doctorId);
-    }
-
-    @GetMapping(value = "/byDoctorId/upcoming/{id}")
-    public List<AppointmentDto> getAllUpcomingByDoctorId(@PathVariable(value = "id") Integer doctorId){
-        return appointmentService.findAllUpcomingByDoctorId(doctorId);
-    }
+//    @GetMapping(value = "/byDoctorId/{id}")
+//    public List<AppointmentDto> getAllByDoctorId(@PathVariable(value = "id") Integer doctorId){
+//        return appointmentService.findAllByDoctorId(doctorId);
+//    }
+//
+//    @GetMapping(value = "/byDoctorId/upcoming/{id}")
+//    public List<AppointmentDto> getAllUpcomingByDoctorId(@PathVariable(value = "id") Integer doctorId){
+//        return appointmentService.findAllUpcomingByDoctorId(doctorId);
+//    }
 
 
 }

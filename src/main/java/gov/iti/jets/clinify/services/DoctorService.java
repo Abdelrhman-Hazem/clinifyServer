@@ -140,6 +140,14 @@ public class DoctorService extends BaseServiceImp<Doctor, DoctorDto> {
         return null;
     }
 
+    public void updateRating(Doctor doctor, Integer rating){
+        Double avgRating = doctor.getAverageRating();
+        Integer ratingCount = doctor.getRatingCount();
+        avgRating = (avgRating*ratingCount+rating)/(ratingCount+1);
+        doctor.setAverageRating(avgRating);
+        doctor.setRatingCount(ratingCount+1);
+    }
+
 
 
     private File convertMultiPartFileToFile(MultipartFile file) {
