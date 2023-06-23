@@ -178,7 +178,7 @@ public class Appointment extends BaseEntity {
         this.description = description;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="appointment")
+@OneToMany(fetch=FetchType.LAZY, mappedBy="fullAppointment")
     public Set<Appointment> getDividedAppointments() {
         return this.dividedAppointments;
     }
