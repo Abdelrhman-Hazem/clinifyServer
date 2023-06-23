@@ -31,6 +31,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 import static java.nio.file.Files.copy;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
@@ -44,66 +45,76 @@ public class DoctorController extends BaseController<Doctor, DoctorDto> {
     private DoctorService doctorService;
 
     @Autowired
-    private  ResourceLoader resourceLoader;
+    private ResourceLoader resourceLoader;
 
 
-
-
-    @PostMapping( "/addDoctor")
+    @PostMapping("/addDoctor")
     public ResponseEntity<MessageResponse> addDoctor(@RequestBody DoctorDto dto) {
         DoctorDto doctorDto = this.doctorService.findByPhoneNumber(dto.getPhoneNumber());
-        if(doctorDto != null && !doctorDto.getId().equals(dto.getId())){
+        if (doctorDto != null && !doctorDto.getId().equals(dto.getId())) {
             throw new FieldNotUniqueException("phoneNumber", "Already Exists");
         }
         doctorService.save(dto);
         return new ResponseEntity<>(new MessageResponse("Doctor Added Successfully"), HttpStatus.OK);
     }
 
-    @PutMapping( "/updateDoctor")
+    @PutMapping("/updateDoctor")
     public ResponseEntity<MessageResponse> updateDoctor(@RequestBody DoctorDto dto) {
         DoctorDto doctorDto = this.doctorService.findByPhoneNumber(dto.getPhoneNumber());
-        if(doctorDto != null && !doctorDto.getId().equals(dto.getId())){
+        if (doctorDto != null && !doctorDto.getId().equals(dto.getId())) {
             throw new FieldNotUniqueException("phoneNumber", "Already Exists");
         }
         doctorService.save(dto);
         return new ResponseEntity<>(new MessageResponse("Doctor Updated Successfully"), HttpStatus.OK);
     }
 
-    @RequestMapping(value="/getPage2", method = RequestMethod.GET)
+    @RequestMapping(value = "/getPage2", method = RequestMethod.GET)
     public PageResult<DoctorDto> getDataPage2(@RequestParam int page, @RequestParam int limit) {
         PageQueryUtil queryUtil = new PageQueryUtil(page, limit);
         return doctorService.getDoctorsDataPage(queryUtil);
     }
-        @RequestMapping(value="{specialityId}/{cityId}/{areaId}", method = RequestMethod.GET)
-        // @RequestMapping (value="/searchResult" , method=RequestMethod.GET)
-    public PageResult<DoctorDto> filterDoctors(@PathVariable String specialityId,@PathVariable String cityId,@PathVariable String areaId,@RequestParam int page,
-                                 @RequestParam int limit,@RequestParam String clinicName) {
+
+    @RequestMapping(value = "{specialityId}/{cityId}/{areaId}", method = RequestMethod.GET)
+    // @RequestMapping (value="/searchResult" , method=RequestMethod.GET)
+    public PageResult<DoctorDto> filterDoctors(@PathVariable String specialityId, @PathVariable String cityId, @PathVariable String areaId, @RequestParam int page,
+                                               @RequestParam int limit, @RequestParam String clinicName, @RequestParam(name = "sortType",required = false) String sort,
+                                               @RequestParam(name = "order",required = false) String order) {
         PageQueryUtil queryUtil = new PageQueryUtil(page, limit);
         DoctorSearchDto doctorSearchDto = new DoctorSearchDto();
         DoctorSpecialization specialization = new DoctorSpecialization();
-     
-        
-        if(!cityId.equals("null")){
-        City city=new City();
-        city.setId(Integer.parseInt(cityId));
-        doctorSearchDto.setCity(city);
+
+
+        if (!cityId.equals("null")) {
+            City city = new City();
+            city.setId(Integer.parseInt(cityId));
+            doctorSearchDto.setCity(city);
         }
-        if(!areaId.equals("null")){
+        if (!areaId.equals("null")) {
             Area area = new Area();
             area.setId(Integer.parseInt(areaId));
             doctorSearchDto.setArea(area);
         }
-        if(!specialityId.equals("null")){
-             specialization.setId(Integer.parseInt(specialityId));
-              doctorSearchDto.setSpecialization(specialization);
+        if (!specialityId.equals("null")) {
+            specialization.setId(Integer.parseInt(specialityId));
+            doctorSearchDto.setSpecialization(specialization);
         }
-        
-       if(!clinicName.equals("null")){
-        doctorSearchDto.setClinicName(clinicName);
-       }
-        
+
+        if (!clinicName.equals("null")) {
+            doctorSearchDto.setClinicName(clinicName);
+        }
+
+        if (sort != null && !sort.equals("null")) {
+            doctorSearchDto.setSortBy(sort);
+        }
+
+        System.out.println("hosam222"+ order);
+        if (order != null && !order.equals("null")) {
+            System.out.println("hosam"+ order);
+            doctorSearchDto.setSortDirection(order);
+        }
+
         return doctorService.searchDoctors(doctorSearchDto, queryUtil);
-    } 
+    }
 
 //    @PostMapping("/upload")
 //    public ResponseEntity<List<String>> uploadFiles(@RequestParam("files")List<MultipartFile> multipartFiles) throws IOException {
@@ -132,8 +143,8 @@ public class DoctorController extends BaseController<Doctor, DoctorDto> {
 
 
     @PostMapping("/upload")
-    public ResponseEntity<MessageResponse> uploadFile(@RequestBody MultipartFile file ) {
-        return new ResponseEntity<>(new MessageResponse(doctorService.uploadFile(file)) , HttpStatus.OK);
+    public ResponseEntity<MessageResponse> uploadFile(@RequestBody MultipartFile file) {
+        return new ResponseEntity<>(new MessageResponse(doctorService.uploadFile(file)), HttpStatus.OK);
     }
 
     @GetMapping("/download/{fileName}")
@@ -147,9 +158,9 @@ public class DoctorController extends BaseController<Doctor, DoctorDto> {
                     .header("Content-type", "application/octet-stream")
                     .header("Content-disposition", "attachment; filename=\"" + fileName + "\"")
                     .body(resource);
-        }catch (Exception ex){
+        } catch (Exception ex) {
 //            log.info(ex.getMessage());
-            return null ;
+            return null;
         }
     }
 
