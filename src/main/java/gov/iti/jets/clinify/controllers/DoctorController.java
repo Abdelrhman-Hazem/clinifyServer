@@ -68,7 +68,6 @@ public class DoctorController extends BaseController<Doctor, DoctorDto> {
         PageQueryUtil queryUtil = new PageQueryUtil(page, limit);
         return doctorService.getDoctorsDataPage(queryUtil);
     }
-
     @RequestMapping(value = "{specialityId}/{cityId}/{areaId}", method = RequestMethod.GET)
     // @RequestMapping (value="/searchResult" , method=RequestMethod.GET)
     public PageResult<DoctorDto> filterDoctors(@PathVariable String specialityId, @PathVariable String cityId, @PathVariable String areaId, @RequestParam int page,
