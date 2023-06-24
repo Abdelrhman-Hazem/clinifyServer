@@ -26,5 +26,8 @@ public class DoctorDto extends BaseDto {
     Double averageRating;
     Integer ratingCount;
     String status;
+
+    Integer avgMinutesPerPatient;
+    String imgUrl;
 //    Set<AppointmentWithoutRatingDto> appointments;
 }

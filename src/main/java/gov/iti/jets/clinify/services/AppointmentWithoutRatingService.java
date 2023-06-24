@@ -1,24 +1,38 @@
 package gov.iti.jets.clinify.services;
 
-import gov.iti.jets.clinify.mappers.AppointmentMapper;
+import gov.iti.jets.clinify.exceptions.AppointmentNotSavedException;
 import gov.iti.jets.clinify.mappers.AppointmentWithoutRatingMapper;
 import gov.iti.jets.clinify.mappers.BaseMapper;
 import gov.iti.jets.clinify.models.dtos.AppointmentDto;
 import gov.iti.jets.clinify.models.dtos.AppointmentWithoutRatingDto;
 import gov.iti.jets.clinify.models.entities.Appointment;
+import gov.iti.jets.clinify.models.entities.Doctor;
 import gov.iti.jets.clinify.repositories.AppointmentRepository;
 import gov.iti.jets.clinify.repositories.BaseRepository;
+import gov.iti.jets.clinify.repositories.PatientRepository;
 import lombok.AllArgsConstructor;
 import org.mapstruct.factory.Mappers;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @Service
 public class AppointmentWithoutRatingService extends BaseServiceImp<Appointment, AppointmentWithoutRatingDto>{
 
+    @Autowired
+    private DoctorService doctorService;
+
+    @Autowired
+    private PatientRepository patientRepository;
+    
     private final AppointmentRepository appointmentRepository;
 
     @Override
@@ -31,12 +45,121 @@ public class AppointmentWithoutRatingService extends BaseServiceImp<Appointment,
         return Mappers.getMapper(AppointmentWithoutRatingMapper.class);
     }
 
-    public List<AppointmentWithoutRatingDto> findAllByDoctorId(Integer doctorId){
-        return mapper().toDtos(appointmentRepository.findAllByDoctor_Id(doctorId));
+
+    @Override
+    @Transactional(readOnly = false)
+    public AppointmentWithoutRatingDto save(AppointmentWithoutRatingDto dto) throws AppointmentNotSavedException {
+        updateDateTimestamp(dto);
+        validateAppointment(dto);
+
+        return saveChecked(dto);
     }
 
-    public List<AppointmentWithoutRatingDto> findAllUpcomingByDoctorId(Integer doctorId){
-        return mapper().toDtos(appointmentRepository.findAllByDoctor_IdAndDateGreaterThan(doctorId, new Timestamp(System.currentTimeMillis())));
+    @Transactional(readOnly = false)
+    public void bookAppointment (Integer appointmentId, Integer patientId) throws AppointmentNotSavedException{
+        Appointment appointment = appointmentRepository.findById(appointmentId).get();
+        if(appointment.getPatient()!=null) throw new AppointmentNotSavedException("Appointment Already Booked");
+
+        appointment.setPatient(patientRepository.findById(patientId).get());
+        appointment.setStatus("Pending");
+
+        appointmentRepository.save(appointment);
+    }
+
+    @Transactional(readOnly = false)
+    public void rateAppointment (Integer appointmentId, Integer rating) throws AppointmentNotSavedException{
+        if(rating<1 || rating>5) throw new AppointmentNotSavedException("Invalid Rating, should be between 1 & 5 stars");
+
+        Appointment appointment = appointmentRepository.findById(appointmentId).get();
+        appointment.setRating(rating);
+
+        doctorService.updateRating(appointment.getDoctor(),rating);
+        appointmentRepository.save(appointment);
+    }
+
+    public AppointmentWithoutRatingDto updateAppointment(AppointmentWithoutRatingDto dto) throws AppointmentNotSavedException{
+        updateDateTimestamp(dto);
+        validateAppointment(dto);
+
+        Appointment appointment = appointmentRepository.findById(dto.getId()).get();
+        for(Appointment singleAppointment:appointment.getDividedAppointments()){
+            long singleEndTimeStampInMinutes = singleAppointment.getDate().getTime()/(60*100);
+            long dtoEndTimeStampInMinutes = dto.getDate().getTime()/(60*1000)+getTimeDifference(dto);
+
+            if(singleAppointment.getPatient()!= null &&
+                    singleAppointment.getDate().compareTo(dto.getDate()) < 0
+                    || singleEndTimeStampInMinutes > dtoEndTimeStampInMinutes ){
+                throw new AppointmentNotSavedException("A patient booked an appointment during that time");
+            }
+        }
+        return saveChecked(dto);
+    }
+
+
+    public List<AppointmentWithoutRatingDto> findAllFullByDoctorId(Integer doctorId){
+        return mapper().toDtos(appointmentRepository.findAllByDoctor_IdAndFullAppointmentNullOrderByDate(doctorId));
+    }
+
+    public List<AppointmentWithoutRatingDto> findAllFullUpcomingByDoctorId(Integer doctorId){
+        return mapper().toDtos(appointmentRepository.findAllByDoctor_IdAndDateGreaterThanAndFullAppointmentNullOrderByDate(doctorId, new Timestamp(System.currentTimeMillis())));
+    }
+
+    public List<AppointmentWithoutRatingDto> findAllDividedByDoctorId(Integer doctorId){
+        return mapper().toDtos(appointmentRepository.findAllByDoctor_IdAndFullAppointmentNotNullOrderByDate(doctorId));
+    }
+
+    public List<AppointmentWithoutRatingDto> findAllDividedUpcomingByDoctorId(Integer doctorId){
+        return mapper().toDtos(appointmentRepository.findAllByDoctor_IdAndDateGreaterThanAndFullAppointmentNotNullOrderByDate(doctorId, new Timestamp(System.currentTimeMillis())));
+    }
+
+    private Timestamp addMinutesToTimestamp(Timestamp timestamp, int minutes){
+        LocalDateTime localDateTime = timestamp.toLocalDateTime();
+        LocalDateTime newDateTime = localDateTime.plusMinutes(minutes);
+        return Timestamp.valueOf(newDateTime);
+    }
+
+    private Time addMinutesToTime(Time timestamp, int minutes){
+        LocalTime localTime = timestamp.toLocalTime();
+        LocalTime newTime = localTime.plusMinutes(minutes);
+        return Time.valueOf(newTime);
+    }
+
+    private Set<Appointment> createDividedAppointmentSet(AppointmentWithoutRatingDto dto){
+        long timeDifference = getTimeDifference(dto);
+        Set<Appointment> dividedAppointments = null;
+        for(int i=0;i<timeDifference/dto.getDoctor().getAvgMinutesPerPatient();i++){
+            Timestamp date= addMinutesToTimestamp( dto.getDate(), dto.getDoctor().getAvgMinutesPerPatient() * i);
+            Time startTime = new Time(date.getTime());
+            Time endTime = addMinutesToTime(startTime,dto.getDoctor().getAvgMinutesPerPatient());
+            dividedAppointments.add(new Appointment(doctorService.mapper().toEntity(dto.getDoctor()), date, startTime, endTime));
+        }
+        return dividedAppointments;
+    }
+
+
+    private AppointmentWithoutRatingDto saveChecked(AppointmentWithoutRatingDto dto){
+        Appointment appointment = mapper().toEntity(dto);
+        appointment.setDividedAppointments(createDividedAppointmentSet(dto));
+        return mapper().toDto(Repository().save(appointment));
+    }
+
+    private void validateAppointment(AppointmentWithoutRatingDto dto) throws AppointmentNotSavedException{
+        long timeDifference = getTimeDifference(dto);
+        if(timeDifference<dto.getDoctor().getAvgMinutesPerPatient()) throw new AppointmentNotSavedException("Appointment Time Length less than the time for 1 patient");
+        if(dto.getDate().getTime()<System.currentTimeMillis()) throw  new AppointmentNotSavedException("Appointment time must be in the future");
+    }
+
+    private long getTimeDifference(AppointmentWithoutRatingDto dto){
+        long timeDifference = (dto.getStartTime().getTime()-dto.getEndTime().getTime())/(60*1000);
+        if(timeDifference<0)timeDifference+=24*60;
+        return timeDifference;
+    }
+
+    private void updateDateTimestamp(AppointmentWithoutRatingDto dto){
+        //Add start time to date timestamp
+        dto.setDate(
+                addMinutesToTimestamp(dto.getDate(),(int)(dto.getStartTime().getTime()/(60*1000)))
+        );
     }
 
 }

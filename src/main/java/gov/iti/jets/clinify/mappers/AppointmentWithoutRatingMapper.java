@@ -1,7 +1,5 @@
 package gov.iti.jets.clinify.mappers;
 
-import gov.iti.jets.clinify.mappers.DoctorSimpleMapper;
-import gov.iti.jets.clinify.mappers.PatientSimpleMapper;
 import gov.iti.jets.clinify.models.dtos.AppointmentWithoutRatingDto;
 import gov.iti.jets.clinify.models.entities.Appointment;
 import org.mapstruct.*;

@@ -35,19 +35,24 @@ public class Doctor extends BaseEntity {
      private Integer ratingCount;
      private String status;
      private Boolean isDeleted;
+    String imgUrl;
+
+
+    private Integer avgMinutesPerPatient;
      private Set<Appointment> appointments = new HashSet(0);
 
     public Doctor() {
     }
 
 	
-    public Doctor(DoctorTitle doctorTitle, Clinic clinic, DoctorSpecialization doctorSpecialization, String fullName, String phoneNumber, int ticketPrice) {
+    public Doctor(DoctorTitle doctorTitle, Clinic clinic, DoctorSpecialization doctorSpecialization, String fullName, String phoneNumber, int ticketPrice, Integer avgMinutesPerPatient) {
         this.doctorTitle = doctorTitle;
         this.clinic = clinic;
         this.doctorSpecialization = doctorSpecialization;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.ticketPrice = ticketPrice;
+        this.avgMinutesPerPatient=avgMinutesPerPatient;
     }
     public Doctor(DoctorTitle doctorTitle, Clinic clinic, DoctorSpecialization doctorSpecialization, String fullName, String phoneNumber, int ticketPrice, Double averageRating, Integer ratingCount, String status, Boolean isDeleted, Set<Appointment> appointments) {
        this.doctorTitle = doctorTitle;
@@ -165,7 +170,25 @@ public class Doctor extends BaseEntity {
         this.isDeleted = isDeleted;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="doctor")
+    @Column(name="avg_minutes_per_patient")
+    public Integer getAvgMinutesPerPatient() {
+        return this.avgMinutesPerPatient;
+    }
+
+    public void setAvgMinutesPerPatient(Integer avgMinutesPerPatient) {
+        this.avgMinutesPerPatient = avgMinutesPerPatient;
+    }
+
+    @Column(name="img_url")
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="doctor")
     public Set<Appointment> getAppointments() {
         return this.appointments;
     }
