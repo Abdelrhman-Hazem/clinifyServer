@@ -1,12 +1,10 @@
 package gov.iti.jets.clinify.repositories;
 
-import gov.iti.jets.clinify.models.entities.Doctor;
 import gov.iti.jets.clinify.models.entities.Patient;
 
+import java.util.Optional;
+
 public interface PatientRepository extends BaseRepository<Patient> {
-
-    Patient findByPhoneNumber(String phone);
-
-    Patient findByEmail(String email);
-
+    Optional<Patient> findByEmailIgnoreCase(String email);
+    Optional<Patient> findByPhoneNumber(String phoneNumber);
 }
