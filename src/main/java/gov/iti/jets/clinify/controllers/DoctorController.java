@@ -43,12 +43,6 @@ public class DoctorController extends BaseController<Doctor, DoctorDto> {
     @Autowired
     private DoctorService doctorService;
 
-    @Autowired
-    private ResourceLoader resourceLoader;
-
-
-
-
     @PostMapping( "/addDoctor")
     public ResponseEntity<MessageResponse> addDoctor(@RequestBody DoctorDto dto) {
         DoctorDto doctorDto = this.doctorService.findByPhoneNumber(dto.getPhoneNumber());
