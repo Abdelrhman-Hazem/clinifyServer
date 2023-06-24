@@ -21,6 +21,12 @@ public class AppointmentController extends BaseController<Appointment, Appointme
     public List<AppointmentDto> getAllByPatientId(@PathVariable(value = "id") Integer doctorId){
         return appointmentService.findAllByPatientId(doctorId);
     }
+    @PutMapping(value = "/cancelAppointment/{id}")
+    public ResponseEntity<String> cancelAppointment(@PathVariable(value = "id") Integer id){
+        appointmentService.cancelPatientAppointment(id);
+        return ResponseEntity.ok("Appointment cancelled successfully");
+    }
+
 
 //    @GetMapping(value = "/byDoctorId/{id}")
 //    public List<AppointmentDto> getAllByDoctorId(@PathVariable(value = "id") Integer doctorId){

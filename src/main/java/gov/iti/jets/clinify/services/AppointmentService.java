@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -39,8 +40,6 @@ public class AppointmentService extends BaseServiceImp<Appointment, AppointmentD
         return Mappers.getMapper(AppointmentMapper.class);
     }
 
-
-
     public List<AppointmentDto> findAllByPatientId(Integer doctorId){
         return mapper().toDtos(appointmentRepository.findAllByPatient_IdOrderByDate(doctorId));
     }
@@ -52,5 +51,16 @@ public class AppointmentService extends BaseServiceImp<Appointment, AppointmentD
 //    public List<AppointmentDto> findAllUpcomingByDoctorId(Integer doctorId){
 //        return mapper().toDtos(appointmentRepository.findAllByDoctor_IdAndDateGreaterThan(doctorId, new Timestamp(System.currentTimeMillis())));
 //    }
+        public void cancelPatientAppointment(Integer id) {
+        Optional<Appointment> appointmentOptional = appointmentRepository.findById(id);
+        
+        if (appointmentOptional.isPresent()) {
+            Appointment appointment = appointmentOptional.get();
+            appointment.setPatient(null); 
+            appointmentRepository.save(appointment); 
+        } else {
+            throw new IllegalArgumentException("Appointment not found with id: " + id);
+        }
+    }
 
 }
