@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 public class SecurityConfig {
 
@@ -13,6 +15,7 @@ public class SecurityConfig {
     private String AuthorizationServer;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.cors(withDefaults());
         http.oauth2ResourceServer(oauth ->
                 oauth.opaqueToken(op -> op
                         .introspectionUri(AuthorizationServer + "/oauth2/introspect")
@@ -21,7 +24,7 @@ public class SecurityConfig {
         );
 
         http.authorizeHttpRequests(auth -> {
-            auth.anyRequest().authenticated();
+            auth.anyRequest().permitAll();
         });
 
         return http.build();
