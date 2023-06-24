@@ -76,7 +76,7 @@ public class SecurityConfig {
         );
 
         http.authorizeHttpRequests(auth -> {
-            auth.requestMatchers(secured).authenticated().anyRequest().permitAll();
+            auth.anyRequest().permitAll();
         });
         http.cors(withDefaults());
         return http.build();
