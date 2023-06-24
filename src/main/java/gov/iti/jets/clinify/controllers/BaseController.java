@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin
 public class BaseController<E extends BaseEntity, D extends BaseDto>{
 
 	@Autowired
