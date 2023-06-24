@@ -163,16 +163,19 @@ public class DoctorService extends BaseServiceImp<Doctor, DoctorDto> {
 
     public DoctorDto saveDoctor(DoctorDto dto) {
         String arr[]=dto.getImgUrl().split("[.]");
+        System.out.println(dto.getImgUrl());
 
-        if(dto.getId()==null ||dto.getId()==0 ){
-            Doctor doctor= Repository().save(mapper().toEntity(dto));
-            arr[0]=""+doctor.getId();
-            dto.setId(doctor.getId());
-            dto.setImgUrl(arr[0]+"."+arr[1]);
-        }else{
-            arr[0]=""+dto.getId();
-            dto.setImgUrl(arr[0]+"."+arr[1]);
+        if(arr.length>0 && arr.length>1) {
+            if (dto.getId() == null || dto.getId() == 0) {
+                Doctor doctor = Repository().save(mapper().toEntity(dto));
+                arr[0] = "" + doctor.getId();
+                dto.setId(doctor.getId());
+                dto.setImgUrl(arr[0] + "." + arr[1]);
+            } else {
 
+                arr[0] = "" + dto.getId();
+                dto.setImgUrl(arr[0] + "." + arr[1]);
+            }
         }
         return mapper().toDto(Repository().save(mapper().toEntity(dto)));
     }
