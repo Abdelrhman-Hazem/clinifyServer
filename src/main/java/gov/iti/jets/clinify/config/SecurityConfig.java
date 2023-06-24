@@ -50,8 +50,19 @@ public class SecurityConfig {
 //        return new CorsFilter(source);
 //    }
 
-    private final String[] all = {
-            "/cities/all"
+    private final String[] secured = {
+
+            "/appointments/**",
+
+            "/appointmentsForClinics/byDoctorId/**",
+            "/appointmentsForClinics/book/**",
+
+            "/doctors/addDoctor",
+            "/doctors/updateDoctor",
+            "/doctors/upload",
+
+
+
     };
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -65,7 +76,7 @@ public class SecurityConfig {
         );
 
         http.authorizeHttpRequests(auth -> {
-            auth.anyRequest().permitAll();
+            auth.requestMatchers(secured).authenticated().anyRequest().permitAll();
         });
         http.cors(withDefaults());
         return http.build();
