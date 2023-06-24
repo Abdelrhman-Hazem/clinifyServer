@@ -14,6 +14,8 @@ import org.springframework.web.filter.CorsFilter;
 
 import java.util.List;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 public class SecurityConfig {
 
@@ -33,10 +35,24 @@ public class SecurityConfig {
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
+    private final String[] secured = {
+
+            "/appointments/**",
+
+            "/appointmentsForClinics/byDoctorId/**",
+            "/appointmentsForClinics/book/**",
+
+            "/doctors/addDoctor",
+            "/doctors/updateDoctor",
+            "/doctors/upload",
+            "/patients/add"
+
+
+    };
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.cors(Customizer.withDefaults())
-            .csrf(csrf -> csrf.disable());
+        http.cors(withDefaults()).csrf(csrf -> csrf.disable());
+
         http.oauth2ResourceServer(oauth ->
                 oauth.opaqueToken(op -> op
                         .introspectionUri(AuthorizationServer + "/oauth2/introspect")
@@ -45,9 +61,9 @@ public class SecurityConfig {
         );
 
         http.authorizeHttpRequests(auth -> {
-            auth.anyRequest().authenticated();
+            auth.requestMatchers(secured).authenticated()
+                    .requestMatchers("/**").permitAll();
         });
-
         return http.build();
     }
 }
