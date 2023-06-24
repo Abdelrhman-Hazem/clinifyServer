@@ -47,7 +47,7 @@ public class ClinicService extends BaseServiceImp<Clinic, ClinicDto>{
         ClinicDto clinicDto = null;
         if (MatchPattern.isEmail(token)){
             clinicDto = findClinicDataByEmail(token);
-        }else if (MatchPattern.isEmail(token)){
+        }else if (MatchPattern.isPhoneNumber(token)){
             clinicDto = findClinicDataByPhoneNumber(token);
         }
 

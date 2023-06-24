@@ -45,7 +45,7 @@ public class PatientService extends BaseServiceImp<Patient, PatientDto>{
         PatientDto patientDto = null;
         if (MatchPattern.isEmail(token)){
             patientDto = findPatientDataByEmail(token);
-        }else if (MatchPattern.isEmail(token)){
+        }else if (MatchPattern.isPhoneNumber(token)){
             patientDto = findPatientDataByPhoneNumber(token);
         }
 
