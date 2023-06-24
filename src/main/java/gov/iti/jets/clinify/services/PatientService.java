@@ -2,6 +2,7 @@ package gov.iti.jets.clinify.services;
 
 import gov.iti.jets.clinify.mappers.PatientMapper;
 import gov.iti.jets.clinify.mappers.BaseMapper;
+import gov.iti.jets.clinify.models.dtos.DoctorDto;
 import gov.iti.jets.clinify.models.dtos.PatientDto;
 import gov.iti.jets.clinify.models.entities.Patient;
 import gov.iti.jets.clinify.repositories.PatientRepository;
@@ -24,6 +25,14 @@ public class PatientService extends BaseServiceImp<Patient, PatientDto>{
     @Override
     public BaseMapper<Patient, PatientDto> mapper(){
         return Mappers.getMapper(PatientMapper.class);
+    }
+
+    public PatientDto findByPhoneNumber(String phone) {
+        return mapper().toDto(patientRepository.findByPhoneNumber(phone));
+    }
+
+    public PatientDto findByEmail(String email) {
+        return mapper().toDto(patientRepository.findByEmail(email));
     }
 
 }

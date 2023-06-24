@@ -35,20 +35,20 @@ public class SecurityConfig {
 //        bean.setOrder(0);
 //        return bean;
 //    }
-//    @Bean
-//    @Order(0)
-//    public CorsFilter corsFilter() {
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//
-//        CorsConfiguration config = new CorsConfiguration();
-//        config.setAllowCredentials(true);
-//        config.setAllowedOriginPatterns(List.of("*",""));
-//        config.addAllowedHeader("*");
-//        config.addAllowedMethod("*");
-//
-//        source.registerCorsConfiguration("/**", config);
-//        return new CorsFilter(source);
-//    }
+    @Bean
+    @Order(0)
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.setAllowedOriginPatterns(List.of("*",""));
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
+
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
+    }
 
     private final String[] secured = {
 
@@ -60,7 +60,7 @@ public class SecurityConfig {
             "/doctors/addDoctor",
             "/doctors/updateDoctor",
             "/doctors/upload",
-
+            "/patients/add"
 
 
     };
