@@ -101,9 +101,7 @@ public class DoctorController extends BaseController<Doctor, DoctorDto> {
             doctorSearchDto.setSortBy(sort);
         }
 
-        System.out.println("hosam222"+ order);
         if (order != null && !order.equals("null")) {
-            System.out.println("hosam"+ order);
             doctorSearchDto.setSortDirection(order);
         }
 
