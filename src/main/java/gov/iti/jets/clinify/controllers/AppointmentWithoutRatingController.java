@@ -59,4 +59,9 @@ public class AppointmentWithoutRatingController extends BaseController<Appointme
         System.out.println(dto);
         return new ResponseEntity<>(appointmentWithoutRatingService.updateAppointment(dto), HttpStatus.OK);
     }
+
+    @GetMapping(value = "/allBookedByClinicId/{id}")
+    public List<AppointmentWithoutRatingDto> findAllBookedByClinicId(@PathVariable(value = "id") Integer id){
+        return appointmentWithoutRatingService.findAllByClinicId(id);
+    }
 }

@@ -100,6 +100,12 @@ public class AppointmentWithoutRatingService extends BaseServiceImp<Appointment,
                         || singleEndTimeStampInMinutes > dtoEndTimeStampInMinutes) {
                     throw new AppointmentNotSavedException("A patient booked an appointment during that time");
                 }
+
+            }
+
+            for (Appointment singleAppointment : appointment.getDividedAppointments()) {
+                appointmentRepository.delete(singleAppointment);
+                System.out.println(singleAppointment.getId());
             }
         }
         return saveChecked(dto);
@@ -189,6 +195,10 @@ public class AppointmentWithoutRatingService extends BaseServiceImp<Appointment,
 //        System.out.println("kkkkkkkkkkkkkkkkkkk");
 //        System.out.println(dto.getStartTime().getTime());
 //        System.out.println(dto);
+    }
+
+    public List<AppointmentWithoutRatingDto> findAllBookedByClinicId(Integer clinicId){
+        return mapper().toDtos(appointmentRepository.findAllByDoctor_Clinic_IdAndPatientNotNull(clinicId));
     }
 
 }
