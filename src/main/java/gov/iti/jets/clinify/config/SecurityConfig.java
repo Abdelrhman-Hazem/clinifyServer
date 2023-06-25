@@ -58,13 +58,16 @@ public class SecurityConfig {
         http.oauth2ResourceServer(oauth ->
                 oauth.opaqueToken(op -> op
                         .introspectionUri(AuthorizationServer + "/oauth2/introspect")
-                        .introspectionClientCredentials("iti-client", "iti-secret")
+                        .introspectionClientCredentials("iti-patient", "iti-patient-martina")
+                ).opaqueToken(op -> op
+                        .introspectionUri(AuthorizationServer + "/oauth2/introspect")
+                        .introspectionClientCredentials("iti-clinic", "iti-clinic-martina")
                 )
         );
 
         http.authorizeHttpRequests(auth -> {
-            auth.requestMatchers(secured).authenticated()
-                    .requestMatchers("/**").permitAll();
+            auth.requestMatchers(secured).hasAuthority("SCOPE_CLINIC")
+                .requestMatchers("/**").permitAll();
         });
         return http.build();
     }
