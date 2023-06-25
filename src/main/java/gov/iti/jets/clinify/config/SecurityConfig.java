@@ -106,8 +106,8 @@ public class SecurityConfig {
         );
 
         http.authorizeHttpRequests(auth -> {
-            auth.requestMatchers(clinicRole).hasAuthority("SCOPE_CLINIC")
-                    .requestMatchers(patientRole).hasAuthority("SCOPE_PATIENT")
+            auth.requestMatchers(clinicRole).hasAnyAuthority("SCOPE_CLINIC", "SCOPE_ADMIN")
+                    .requestMatchers(patientRole).hasAnyAuthority("SCOPE_PATIENT", "SCOPE_ADMIN")
                 .requestMatchers("/**").permitAll();
         });
         return http.build();
