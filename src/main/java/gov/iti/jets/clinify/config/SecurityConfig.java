@@ -49,7 +49,7 @@ public class SecurityConfig {
 
             "/patients/data/**",
             "/patients/update",
-            "/patients/*"
+//            "/patients/*"
     };
 
     private final String[] clinicRole = {
@@ -67,7 +67,7 @@ public class SecurityConfig {
             "/doctors/add",
             "/doctors/addDoctor",
             "/doctors/delete",
-            "/doctors/update",
+//            "/doctors/update",
             "/doctors/updateDoctor",
             "/doctors/upload",
 
