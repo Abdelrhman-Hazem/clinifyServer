@@ -10,6 +10,8 @@ import lombok.AllArgsConstructor;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Service
 public class AreaService extends BaseServiceImp<Area, AreaDto>{
@@ -24,6 +26,10 @@ public class AreaService extends BaseServiceImp<Area, AreaDto>{
     @Override
     public BaseMapper<Area, AreaDto> mapper(){
         return Mappers.getMapper(AreaMapper.class);
+    }
+
+    public List<AreaDto> getAreasByCityId(Integer cityId){
+        return mapper().toDtos(areaRepository.findAllByCity_Id(cityId));
     }
 
 }

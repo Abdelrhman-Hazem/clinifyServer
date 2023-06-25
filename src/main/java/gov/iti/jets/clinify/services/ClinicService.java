@@ -63,5 +63,21 @@ public class ClinicService extends BaseServiceImp<Clinic, ClinicDto>{
         return mapper().toDtos(clinicRepository.findAllByStatusIgnoreCase("pending"));
     }
 
+    public boolean isEmailExist(String email){
+        Optional<Clinic> clinic = clinicRepository.findByEmailIgnoreCase(email);
+        if(clinic.isPresent()){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isPhoneNumberExist(String phoneNumber){
+        Optional<Clinic> clinic = clinicRepository.findByPhoneNumber(phoneNumber);
+        if(clinic.isPresent()){
+            return true;
+        }
+        return false;
+    }
+
 
 }

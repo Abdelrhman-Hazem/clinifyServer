@@ -18,4 +18,6 @@ public interface ClinicRepository extends BaseRepository<Clinic> {
     List<Clinic> findAllByStatusIgnoreCase(String status);
 
 
+
+
 }

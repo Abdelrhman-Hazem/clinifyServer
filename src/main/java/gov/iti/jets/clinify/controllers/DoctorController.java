@@ -55,8 +55,8 @@ public class DoctorController extends BaseController<Doctor, DoctorDto> {
         }
 
         //Hashing password
-        String hashedPassword = passwordEncoder.encode(dto.getClinic().getPassword());
-        dto.getClinic().setPassword(hashedPassword);
+//        String hashedPassword = passwordEncoder.encode(dto.getClinic().getPassword());
+//        dto.getClinic().setPassword(hashedPassword);
 
         DoctorDto savedDto  = doctorService.saveDoctor(dto);
         return new ResponseEntity<>(new MessageResponse(savedDto.getImgUrl()), HttpStatus.OK);
