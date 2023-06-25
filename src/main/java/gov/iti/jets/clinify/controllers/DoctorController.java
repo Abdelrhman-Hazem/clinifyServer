@@ -156,11 +156,6 @@ public class DoctorController extends BaseController<Doctor, DoctorDto> {
             return null ;
         }
     }
-    @GetMapping("/pending")
-    public ResponseEntity<List<DoctorDto>> getPendingDoctors(){
-        List<DoctorDto> pendingDoctors = doctorService.getAllDoctorsWithPendingStatus();
-        return ResponseEntity.ok(pendingDoctors);
-    }
 
     @GetMapping(value = "/allPending")
     public List<DoctorDto> getAllPending(){
