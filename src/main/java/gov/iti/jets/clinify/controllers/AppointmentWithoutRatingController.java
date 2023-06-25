@@ -39,7 +39,7 @@ public class AppointmentWithoutRatingController extends BaseController<Appointme
         return appointmentWithoutRatingService.findAllDividedUpcomingByDoctorId(doctorId);
     }
 
-    @PutMapping(value = "book/{appointmentId}/patient/{patientId}")
+    @PutMapping(value = "book/{appointmentId}/{patientId}")
     public MessageResponse bookAppointment(@PathVariable(value = "appointmentId") Integer appointmentId, @PathVariable(value = "patientId") Integer patientId){
         appointmentWithoutRatingService.bookAppointment(appointmentId,patientId);
         return new MessageResponse("Item has been saved successfully");
@@ -55,6 +55,8 @@ public class AppointmentWithoutRatingController extends BaseController<Appointme
     @Override
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public ResponseEntity<AppointmentWithoutRatingDto> update(@RequestBody AppointmentWithoutRatingDto dto){
+        System.out.println("in app controller");
+        System.out.println(dto);
         return new ResponseEntity<>(appointmentWithoutRatingService.updateAppointment(dto), HttpStatus.OK);
     }
 }

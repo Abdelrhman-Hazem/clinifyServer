@@ -84,9 +84,15 @@ public class Area extends BaseEntity {
         this.patients = patients;
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return "Area{" +
+                "city=" + city +
+                ", name='" + name + '\'' +
+                ", clinics=" + clinics +
+                ", patients=" + patients +
+                '}';
+    }
 }
 
 

@@ -190,8 +190,23 @@ public class Clinic  extends BaseEntity {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "Clinic{" +
+                "id=" + id +
+                ", area=" + area +
+                ", city=" + city +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", status='" + status + '\'' +
+                ", isDeleted=" + isDeleted +
+                ", doctors=" + doctors +
+                '}';
+    }
 }
 
 

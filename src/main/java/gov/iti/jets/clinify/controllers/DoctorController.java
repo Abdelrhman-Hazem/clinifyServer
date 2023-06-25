@@ -2,6 +2,7 @@ package gov.iti.jets.clinify.controllers;
 
 import gov.iti.jets.clinify.exceptions.FieldNotUniqueException;
 import gov.iti.jets.clinify.mappers.DoctorMapper;
+import gov.iti.jets.clinify.models.dtos.ClinicDto;
 import gov.iti.jets.clinify.models.dtos.DoctorDto;
 import gov.iti.jets.clinify.models.dtos.DoctorSearchDto;
 import gov.iti.jets.clinify.models.entities.Area;
@@ -101,9 +102,7 @@ public class DoctorController extends BaseController<Doctor, DoctorDto> {
             doctorSearchDto.setSortBy(sort);
         }
 
-        System.out.println("hosam222"+ order);
         if (order != null && !order.equals("null")) {
-            System.out.println("hosam"+ order);
             doctorSearchDto.setSortDirection(order);
         }
 
@@ -156,6 +155,22 @@ public class DoctorController extends BaseController<Doctor, DoctorDto> {
 //            log.info(ex.getMessage());
             return null ;
         }
+    }
+    @GetMapping("/pending")
+    public ResponseEntity<List<DoctorDto>> getPendingDoctors(){
+        List<DoctorDto> pendingDoctors = doctorService.getAllDoctorsWithPendingStatus();
+        return ResponseEntity.ok(pendingDoctors);
+    }
+
+    @GetMapping(value = "/allPending")
+    public List<DoctorDto> getAllPending(){
+        return doctorService.findAllPending();
+    }
+
+    @GetMapping(value = "allByClinicId/{id}")
+    public PageResult<DoctorDto> getDoctorsByClinicIdPaged(@RequestParam int page, @RequestParam int limit, @PathVariable(value = "id") Integer clinicId){
+        PageQueryUtil queryUtil = new PageQueryUtil(page, limit);
+        return doctorService.findAllByClinicId(queryUtil, clinicId);
     }
 
 }

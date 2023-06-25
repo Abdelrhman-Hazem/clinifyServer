@@ -214,8 +214,25 @@ public class Patient  extends BaseEntity {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "id=" + id +
+                ", area=" + area +
+                ", city=" + city +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", password='" + password + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", email='" + email + '\'' +
+                ", birthDate=" + birthDate +
+                ", gender='" + gender + '\'' +
+                ", address='" + address + '\'' +
+                ", preperationTime=" + preperationTime +
+                ", isDeleted=" + isDeleted +
+                ", patientDocuments=" + patientDocuments +
+                ", appointments=" + appointments +
+                '}';
+    }
 }
 
 
