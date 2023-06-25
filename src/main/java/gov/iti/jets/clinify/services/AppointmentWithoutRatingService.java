@@ -84,13 +84,13 @@ public class AppointmentWithoutRatingService extends BaseServiceImp<Appointment,
         validateAppointment(dto);
 
         Optional<Appointment> appointmentOptional = appointmentRepository.findById(dto.getId());
-        System.out.println("--------------------------");
+//        System.out.println("--------------------------");
 //        if()
 //        Appointment appointment = appointmentRepository.findById(dto.getId()).;
 
         if(appointmentOptional.isPresent()) {
             Appointment appointment = appointmentOptional.get();
-            System.out.println("-------------------");
+//            System.out.println("-------------------");
             for (Appointment singleAppointment : appointment.getDividedAppointments()) {
                 long singleEndTimeStampInMinutes = singleAppointment.getDate().getTime() / (60 * 100);
                 long dtoEndTimeStampInMinutes = dto.getDate().getTime() / (60 * 1000) + getTimeDifference(dto);
@@ -123,13 +123,13 @@ public class AppointmentWithoutRatingService extends BaseServiceImp<Appointment,
     }
 
     private Timestamp addMinutesToTimestamp(Timestamp timestamp, int minutes){
-        System.out.println(minutes);
-        System.out.println(timestamp);
+//        System.out.println(minutes);
+//        System.out.println(timestamp);
         LocalDateTime localDateTime = timestamp.toLocalDateTime();
-        System.out.println(localDateTime);
+//        System.out.println(localDateTime);
         LocalDateTime newDateTime = localDateTime.plusMinutes(minutes);
-        System.out.println(newDateTime);
-        System.out.println(Timestamp.valueOf(newDateTime));
+//        System.out.println(newDateTime);
+//        System.out.println(Timestamp.valueOf(newDateTime));
         return Timestamp.valueOf(newDateTime);
     }
 
@@ -153,7 +153,7 @@ public class AppointmentWithoutRatingService extends BaseServiceImp<Appointment,
             appointmentRepository.save(appointment);
             dividedAppointments.add(appointment);
         }
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaa");
+//        System.out.println("aaaaaaaaaaaaaaaaaaaaaa");
         return dividedAppointments;
     }
 
@@ -162,7 +162,7 @@ public class AppointmentWithoutRatingService extends BaseServiceImp<Appointment,
         Appointment appointment = mapper().toEntity(dto);
         appointment = Repository().save(appointment);
         createDividedAppointmentSet(mapper().toDto(appointment));
-        System.out.println("ssssssssssssssssssssssssss");
+//        System.out.println("ssssssssssssssssssssssssss");
 //        appointment.setDividedAppointments(createDividedAppointmentSet(mapper().toDto(appointment)));
 //        System.out.println(appointment);
         return mapper().toDto(appointment);
@@ -186,9 +186,9 @@ public class AppointmentWithoutRatingService extends BaseServiceImp<Appointment,
         dto.setDate(
                 addMinutesToTimestamp(dto.getDate(),180+(int)(dto.getStartTime().getTime()/(60*1000)))
         );
-        System.out.println("kkkkkkkkkkkkkkkkkkk");
-        System.out.println(dto.getStartTime().getTime());
-        System.out.println(dto);
+//        System.out.println("kkkkkkkkkkkkkkkkkkk");
+//        System.out.println(dto.getStartTime().getTime());
+//        System.out.println(dto);
     }
 
 }

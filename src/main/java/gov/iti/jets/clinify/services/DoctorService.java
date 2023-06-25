@@ -89,6 +89,7 @@ public class DoctorService extends BaseServiceImp<Doctor, DoctorDto> {
             List<Predicate> predicates = new ArrayList<>();
 
             predicates.add(criteriaBuilder.equal(root.get("isDeleted"), false));
+            predicates.add(criteriaBuilder.equal(root.get("status"), "Accepted"));
 
             if (doctorSearchDto != null) {
                 if (doctorSearchDto.getSpecialization() != null) {
@@ -152,7 +153,7 @@ public class DoctorService extends BaseServiceImp<Doctor, DoctorDto> {
 
     public PageResult<DoctorDto> getDoctorsDataPageByClinic(PageQueryUtil pageUtil, Integer clinicId) {
         Pageable pageable = PageRequest.of(pageUtil.getPage() - 1, pageUtil.getLimit());
-        Page<Doctor> page = this.doctorRepository.findAllByClinic_Id(pageable, clinicId);
+        Page<Doctor> page = this.doctorRepository.findAllByClinic_IdAndStatusIgnoreCase(pageable, clinicId, "Accepted");
         PageResult<Doctor> pageResult = new PageResult<Doctor>(page.getContent(), (int) page.getTotalElements(),
                 pageUtil.getLimit(), pageUtil.getPage());
 
@@ -198,7 +199,7 @@ public class DoctorService extends BaseServiceImp<Doctor, DoctorDto> {
 
     public PageResult<DoctorDto> findAllByClinicId(PageQueryUtil pageUtil, Integer clinicId) {
         Pageable pageable = PageRequest.of(pageUtil.getPage() -1, pageUtil.getLimit());
-        Page<Doctor> page = doctorRepository.findAllByClinic_Id(pageable, clinicId);
+        Page<Doctor> page = doctorRepository.findAllByClinic_IdAndStatusIgnoreCase(pageable, clinicId, "Accepted");
         PageResult<Doctor> pageResult = new PageResult<Doctor>(page.getContent(), (int) page.getTotalElements(),
                 pageUtil.getLimit(), pageUtil.getPage());
 

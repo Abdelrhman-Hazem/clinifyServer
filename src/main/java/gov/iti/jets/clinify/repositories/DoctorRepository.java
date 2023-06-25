@@ -21,6 +21,6 @@ public interface DoctorRepository extends BaseRepository<Doctor> , JpaSpecificat
 
     Page<Doctor> findAllByClinic_Id(Pageable pageable, Integer clinicId);
 
-
+    Page<Doctor> findAllByClinic_IdAndStatusIgnoreCase(Pageable pageable, Integer clinicId,String status);
 
 }
