@@ -31,5 +31,6 @@ public class DoctorDto extends BaseDto {
     String imgUrl;
     String docImg;
 
+
 //    Set<AppointmentWithoutRatingDto> appointments;
 }
