@@ -191,8 +191,8 @@ public class Appointment extends BaseEntity {
     public String toString() {
         return "Appointment{" +
                 "id=" + id +
-                "\n, doctor=" + doctor +
-                "\n, patient=" + patient +
+                "\n, doctor=" + doctor.getId() +
+                "\n, patient=" + patient.getId() +
                 "\n, fullAppointment=" + fullAppointment +
                 "\n, date=" + date +
                 "\n, startTime=" + startTime +

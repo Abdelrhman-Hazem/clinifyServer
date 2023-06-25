@@ -104,7 +104,7 @@ public class PatientDocument  extends BaseEntity {
     public String toString() {
         return "PatientDocument{" +
                 "id=" + id +
-                ", patient=" + patient +
+                ", patient=" + patient.getId() +
                 ", date=" + date +
                 ", documentUrl='" + documentUrl + '\'' +
                 ", description='" + description + '\'' +
