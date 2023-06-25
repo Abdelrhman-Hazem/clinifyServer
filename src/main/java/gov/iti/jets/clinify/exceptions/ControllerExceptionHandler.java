@@ -48,4 +48,11 @@ public class ControllerExceptionHandler {
         return new ResponseEntity<>(new MessageResponse(ex.getMessage(),ex.getField()),
                 HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @ExceptionHandler(AppointmentNotSavedException.class)
+    public ResponseEntity<MessageResponse> globalExceptionHandler(AppointmentNotSavedException ex) {
+        log.error(ex.getMessage());
+        return new ResponseEntity<>(new MessageResponse(ex.getMessage()),
+                HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
