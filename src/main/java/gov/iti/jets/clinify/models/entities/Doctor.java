@@ -36,7 +36,9 @@ public class Doctor extends BaseEntity {
      private Integer ratingCount;
      private String status;
      private Boolean isDeleted;
-    String imgUrl;
+    private String imgUrl;
+    private String docImg;
+
 
 
     private Integer avgMinutesPerPatient;
@@ -187,6 +189,15 @@ public class Doctor extends BaseEntity {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    @Column(name="doc_img")
+    public String getDocImg() {
+        return docImg;
+    }
+
+    public void setDocImg(String docImg) {
+        this.docImg = docImg;
     }
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="doctor")
