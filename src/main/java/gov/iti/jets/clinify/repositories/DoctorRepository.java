@@ -15,4 +15,6 @@ public interface DoctorRepository extends BaseRepository<Doctor> , JpaSpecificat
     Page<Doctor> findAllByIsDeletedIsFalse(Pageable pageable);
 
     Doctor findByPhoneNumber(String phone);
+    List<Doctor> findByStatus(String status);
+
 }

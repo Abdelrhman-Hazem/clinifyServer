@@ -183,5 +183,11 @@ public class DoctorService extends BaseServiceImp<Doctor, DoctorDto> {
         return mapper().toDto(Repository().save(mapper().toEntity(dto)));
     }
 
+    public List<DoctorDto> getAllDoctorsWithPendingStatus() {
+        List<Doctor> doctors = doctorRepository.findByStatus("pending");
+        List<DoctorDto> doctorDtos = mapper().toDtos(doctors);
+        return doctorDtos;
+    }
+
 
 }
