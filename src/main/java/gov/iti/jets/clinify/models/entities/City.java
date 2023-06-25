@@ -84,9 +84,9 @@ public class City  extends BaseEntity {
     public String toString() {
         return "City{" +
                 "name='" + name + '\'' +
-                ", patients=" + patients.stream().map((e)->e.getId()).collect(Collectors.toList()) +
-                ", clinics=" + clinics.stream().map((e)->e.getId()).collect(Collectors.toList()) +
-                ", areas=" + areas.stream().map((e)->e.getId()).collect(Collectors.toList()) +
+//                ", patients=" + patients.stream().map((e)->e.getId()).collect(Collectors.toList()) +
+//                ", clinics=" + clinics.stream().map((e)->e.getId()).collect(Collectors.toList()) +
+//                ", areas=" + areas.stream().map((e)->e.getId()).collect(Collectors.toList()) +
                 '}';
     }
 }

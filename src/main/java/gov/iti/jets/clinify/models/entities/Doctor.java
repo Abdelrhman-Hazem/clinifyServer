@@ -214,7 +214,7 @@ public class Doctor extends BaseEntity {
                 ", isDeleted=" + isDeleted +
                 ", imgUrl='" + imgUrl + '\'' +
                 ", avgMinutesPerPatient=" + avgMinutesPerPatient +
-                ", appointments=" + appointments.stream().map((e)->e.getId()).collect(Collectors.toList()) +
+//                ", appointments=" + appointments.stream().map((e)->e.getId()).collect(Collectors.toList()) +
                 '}';
     }
 }

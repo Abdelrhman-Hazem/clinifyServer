@@ -195,8 +195,8 @@ public class Clinic  extends BaseEntity {
     public String toString() {
         return "Clinic{" +
                 "id=" + id +
-                ", area=" + area.getId() +
-                ", city=" + city.getId() +
+                ", area=" + area+
+                ", city=" + city+
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
