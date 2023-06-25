@@ -100,8 +100,16 @@ public class PatientDocument  extends BaseEntity {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "PatientDocument{" +
+                "id=" + id +
+                ", patient=" + patient +
+                ", date=" + date +
+                ", documentUrl='" + documentUrl + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
 
 

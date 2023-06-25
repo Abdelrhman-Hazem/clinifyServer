@@ -55,6 +55,8 @@ public class AppointmentWithoutRatingController extends BaseController<Appointme
     @Override
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public ResponseEntity<AppointmentWithoutRatingDto> update(@RequestBody AppointmentWithoutRatingDto dto){
+        System.out.println("in app controller");
+        System.out.println(dto);
         return new ResponseEntity<>(appointmentWithoutRatingService.updateAppointment(dto), HttpStatus.OK);
     }
 }

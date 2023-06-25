@@ -3,8 +3,10 @@ package gov.iti.jets.clinify.services;
 import gov.iti.jets.clinify.mappers.ClinicMapper;
 import gov.iti.jets.clinify.mappers.BaseMapper;
 import gov.iti.jets.clinify.models.dtos.ClinicDto;
+import gov.iti.jets.clinify.models.dtos.DoctorDto;
 import gov.iti.jets.clinify.models.dtos.PatientDto;
 import gov.iti.jets.clinify.models.entities.Clinic;
+import gov.iti.jets.clinify.models.entities.Doctor;
 import gov.iti.jets.clinify.models.entities.Patient;
 import gov.iti.jets.clinify.repositories.ClinicRepository;
 import gov.iti.jets.clinify.repositories.BaseRepository;
@@ -12,6 +14,8 @@ import gov.iti.jets.clinify.utils.MatchPattern;
 import lombok.AllArgsConstructor;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @AllArgsConstructor
 @Service
@@ -53,4 +57,10 @@ public class ClinicService extends BaseServiceImp<Clinic, ClinicDto>{
 
         return clinicDto;
     }
+
+    public List<ClinicDto> findAllPending(){
+        return mapper().toDtos(clinicRepository.findAllByStatusIgnoreCase("pending"));
+    }
+
+
 }

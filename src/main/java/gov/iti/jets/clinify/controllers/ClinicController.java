@@ -2,11 +2,14 @@ package gov.iti.jets.clinify.controllers;
 
 import gov.iti.jets.clinify.models.dtos.BaseDto;
 import gov.iti.jets.clinify.models.dtos.ClinicDto;
+import gov.iti.jets.clinify.models.dtos.DoctorDto;
 import gov.iti.jets.clinify.models.entities.Clinic;
 import gov.iti.jets.clinify.services.ClinicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/clinics")
@@ -32,5 +35,13 @@ public class ClinicController extends BaseController<Clinic, ClinicDto> {
         ClinicDto clinicDto = clinicService.findClinicDataByPhoneNumberOrEmail(userName);
 
         return ResponseEntity.ok().body(clinicDto);
+    }
+
+
+    @GetMapping("/allPending")
+    public ResponseEntity<List<ClinicDto>> getAllPending(){
+        List<ClinicDto> pendingClinics = clinicService.findAllPending();
+        return ResponseEntity.ok(pendingClinics);
+
     }
 }

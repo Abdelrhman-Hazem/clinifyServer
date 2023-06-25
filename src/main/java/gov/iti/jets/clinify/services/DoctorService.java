@@ -7,6 +7,7 @@ import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.util.IOUtils;
 import gov.iti.jets.clinify.mappers.BaseMapper;
 import gov.iti.jets.clinify.mappers.DoctorMapper;
+import gov.iti.jets.clinify.models.dtos.ClinicDto;
 import gov.iti.jets.clinify.models.dtos.DoctorDto;
 import gov.iti.jets.clinify.models.dtos.DoctorSearchDto;
 import gov.iti.jets.clinify.models.entities.Doctor;
@@ -182,6 +183,26 @@ public class DoctorService extends BaseServiceImp<Doctor, DoctorDto> {
         }
         return mapper().toDto(Repository().save(mapper().toEntity(dto)));
     }
+    public List<DoctorDto> findAllPending(){
+        return mapper().toDtos(doctorRepository.findAllByStatusIgnoreCase("pending"));
+    }
 
+<<<<<<< HEAD
+    public PageResult<DoctorDto> findAllByClinicId(PageQueryUtil pageUtil, Integer clinicId) {
+        Pageable pageable = PageRequest.of(pageUtil.getPage() -1, pageUtil.getLimit());
+        Page<Doctor> page = doctorRepository.findAllByClinic_Id(pageable, clinicId);
+        PageResult<Doctor> pageResult = new PageResult<Doctor>(page.getContent(), (int) page.getTotalElements(),
+                pageUtil.getLimit(), pageUtil.getPage());
+
+        return  (PageResult<DoctorDto>) mapper().toDtosPage(pageResult);
+    }
+=======
+    public List<DoctorDto> getAllDoctorsWithPendingStatus() {
+        List<Doctor> doctors = doctorRepository.findByStatus("pending");
+        List<DoctorDto> doctorDtos = mapper().toDtos(doctors);
+        return doctorDtos;
+    }
+
+>>>>>>> 5a171b008bcc6f857619918a61599e1222b5b80d
 
 }

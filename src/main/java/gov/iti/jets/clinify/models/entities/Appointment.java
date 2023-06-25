@@ -187,9 +187,23 @@ public class Appointment extends BaseEntity {
         this.dividedAppointments = dividedAppointments;
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "id=" + id +
+                "\n, doctor=" + doctor +
+                "\n, patient=" + patient +
+                "\n, fullAppointment=" + fullAppointment +
+                "\n, date=" + date +
+                "\n, startTime=" + startTime +
+                "\n, endTime=" + endTime +
+                "\n, creditCardLastFourDigits='" + creditCardLastFourDigits + '\'' +
+                "\n, status='" + status + '\'' +
+                "\n, rating=" + rating +
+                "\n, description='" + description + '\'' +
+                "\n, dividedAppointments=" + dividedAppointments +
+                '}';
+    }
 }
 
 

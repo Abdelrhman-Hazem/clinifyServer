@@ -79,8 +79,15 @@ public class City  extends BaseEntity {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "City{" +
+                "name='" + name + '\'' +
+                ", patients=" + patients +
+                ", clinics=" + clinics +
+                ", areas=" + areas +
+                '}';
+    }
 }
 
 

@@ -198,8 +198,24 @@ public class Doctor extends BaseEntity {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "doctorTitle=" + doctorTitle +
+                ", clinic=" + clinic +
+                ", doctorSpecialization=" + doctorSpecialization +
+                ", fullName='" + fullName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", ticketPrice=" + ticketPrice +
+                ", averageRating=" + averageRating +
+                ", ratingCount=" + ratingCount +
+                ", status='" + status + '\'' +
+                ", isDeleted=" + isDeleted +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", avgMinutesPerPatient=" + avgMinutesPerPatient +
+                ", appointments=" + appointments +
+                '}';
+    }
 }
 
 

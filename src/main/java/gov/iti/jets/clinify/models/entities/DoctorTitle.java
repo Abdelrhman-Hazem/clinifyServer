@@ -57,6 +57,13 @@ public class DoctorTitle extends BaseEntity {
         this.doctors = doctors;
     }
 
+    @Override
+    public String toString() {
+        return "DoctorTitle{" +
+                "name='" + name + '\'' +
+                ", doctors=" + doctors +
+                '}';
+    }
 }
 
 

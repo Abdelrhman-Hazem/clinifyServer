@@ -1,5 +1,6 @@
 package gov.iti.jets.clinify.repositories;
 
+import gov.iti.jets.clinify.models.entities.Clinic;
 import gov.iti.jets.clinify.models.entities.Doctor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,4 +16,13 @@ public interface DoctorRepository extends BaseRepository<Doctor> , JpaSpecificat
     Page<Doctor> findAllByIsDeletedIsFalse(Pageable pageable);
 
     Doctor findByPhoneNumber(String phone);
+<<<<<<< HEAD
+
+    List<Doctor> findAllByStatusIgnoreCase(String status);
+
+    Page<Doctor> findAllByClinic_Id(Pageable pageable, Integer clinicId);
+=======
+    List<Doctor> findByStatus(String status);
+
+>>>>>>> 5a171b008bcc6f857619918a61599e1222b5b80d
 }
