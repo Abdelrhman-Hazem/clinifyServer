@@ -56,11 +56,10 @@ public class AppointmentService extends BaseServiceImp<Appointment, AppointmentD
         
         if (appointmentOptional.isPresent()) {
             Appointment appointment = appointmentOptional.get();
-            appointment.setPatient(null); 
+            appointment.setPatient(null);
             appointmentRepository.save(appointment); 
         } else {
             throw new IllegalArgumentException("Appointment not found with id: " + id);
         }
     }
-
 }
