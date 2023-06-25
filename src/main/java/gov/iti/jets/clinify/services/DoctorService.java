@@ -150,6 +150,15 @@ public class DoctorService extends BaseServiceImp<Doctor, DoctorDto> {
         doctor.setRatingCount(ratingCount+1);
     }
 
+    public PageResult<DoctorDto> getDoctorsDataPageByClinic(PageQueryUtil pageUtil, Integer clinicId) {
+        Pageable pageable = PageRequest.of(pageUtil.getPage() - 1, pageUtil.getLimit());
+        Page<Doctor> page = this.doctorRepository.findAllByClinic_Id(pageable, clinicId);
+        PageResult<Doctor> pageResult = new PageResult<Doctor>(page.getContent(), (int) page.getTotalElements(),
+                pageUtil.getLimit(), pageUtil.getPage());
+
+        return (PageResult<DoctorDto>) mapper().toDtosPage(pageResult);
+    }
+
 
 
     private File convertMultiPartFileToFile(MultipartFile file) {

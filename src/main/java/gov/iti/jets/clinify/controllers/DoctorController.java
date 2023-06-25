@@ -176,4 +176,10 @@ public class DoctorController extends BaseController<Doctor, DoctorDto> {
         return doctorService.findAllByClinicId(queryUtil, clinicId);
     }
 
+    @GetMapping(value="/getPageByClinic/{clinicId}")
+    public PageResult<DoctorDto> getDataPage2(@RequestParam int page, @RequestParam int limit,@PathVariable Integer clinicId) {
+        PageQueryUtil queryUtil = new PageQueryUtil(page, limit);
+        return doctorService.getDoctorsDataPageByClinic(queryUtil, clinicId);
+    }
+
 }

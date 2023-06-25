@@ -21,4 +21,6 @@ public interface DoctorRepository extends BaseRepository<Doctor> , JpaSpecificat
 
     Page<Doctor> findAllByClinic_Id(Pageable pageable, Integer clinicId);
 
+
+
 }
