@@ -19,6 +19,7 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -42,6 +43,8 @@ public class DoctorController extends BaseController<Doctor, DoctorDto> {
 
     @Autowired
     private DoctorService doctorService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @PostMapping( "/addDoctor")
     public ResponseEntity<MessageResponse> addDoctor(@RequestBody DoctorDto dto) {
@@ -49,6 +52,11 @@ public class DoctorController extends BaseController<Doctor, DoctorDto> {
         if(doctorDto != null && !doctorDto.getId().equals(dto.getId())){
             throw new FieldNotUniqueException("phoneNumber", "Already Exists");
         }
+
+        //Hashing password
+        String hashedPassword = passwordEncoder.encode(dto.getClinic().getPassword());
+        dto.getClinic().setPassword(hashedPassword);
+
         DoctorDto savedDto  = doctorService.saveDoctor(dto);
         return new ResponseEntity<>(new MessageResponse(savedDto.getImgUrl()), HttpStatus.OK);
     }

@@ -8,6 +8,8 @@ import gov.iti.jets.clinify.services.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,6 +19,8 @@ public class PatientController extends BaseController<Patient, PatientDto> {
 
     @Autowired
     private PatientService patientService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @PostMapping( "/addPatient")
     public ResponseEntity<PatientDto> addPatient(@RequestBody PatientDto dto) {
@@ -28,6 +32,10 @@ public class PatientController extends BaseController<Patient, PatientDto> {
         }else if(patientDto2 != null){
             throw new FieldNotUniqueException("email", "Already Exists");
         }
+
+        //Hashing password
+        String hashedPassword = passwordEncoder.encode(dto.getPassword());
+        dto.setPassword(hashedPassword);
 
         PatientDto savedDto  = patientService.save(dto);
         return new ResponseEntity<>(savedDto, HttpStatus.OK);
