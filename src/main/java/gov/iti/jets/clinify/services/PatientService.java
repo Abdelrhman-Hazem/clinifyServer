@@ -11,6 +11,8 @@ import lombok.AllArgsConstructor;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @AllArgsConstructor
 @Service
 public class PatientService extends BaseServiceImp<Patient, PatientDto>{
@@ -28,17 +30,19 @@ public class PatientService extends BaseServiceImp<Patient, PatientDto>{
     }
 
     public PatientDto findPatientDataByEmail(String email){
-        Patient patient = patientRepository.findByEmailIgnoreCase(email).get();
-        PatientDto patientDto = mapper().toDto(patient);
-
-        return patientDto;
+        Optional<Patient> patient = patientRepository.findByEmailIgnoreCase(email);
+        if(patient.isPresent()){
+            return   mapper().toDto(patient.get());
+        }
+        return null;
     }
 
     public PatientDto findPatientDataByPhoneNumber(String phoneNumber){
-        Patient patient = patientRepository.findByPhoneNumber(phoneNumber).get();
-        PatientDto patientDto = mapper().toDto(patient);
-
-        return patientDto;
+        Optional<Patient> patient = patientRepository.findByPhoneNumber(phoneNumber);
+        if(patient.isPresent()){
+            return   mapper().toDto(patient.get());
+        }
+        return null;
     }
 
     public PatientDto findPatientDataByPhoneNumberOrEmail(String token){

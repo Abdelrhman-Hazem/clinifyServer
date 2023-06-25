@@ -187,7 +187,6 @@ public class DoctorService extends BaseServiceImp<Doctor, DoctorDto> {
         return mapper().toDtos(doctorRepository.findAllByStatusIgnoreCase("pending"));
     }
 
-<<<<<<< HEAD
     public PageResult<DoctorDto> findAllByClinicId(PageQueryUtil pageUtil, Integer clinicId) {
         Pageable pageable = PageRequest.of(pageUtil.getPage() -1, pageUtil.getLimit());
         Page<Doctor> page = doctorRepository.findAllByClinic_Id(pageable, clinicId);
@@ -196,13 +195,12 @@ public class DoctorService extends BaseServiceImp<Doctor, DoctorDto> {
 
         return  (PageResult<DoctorDto>) mapper().toDtosPage(pageResult);
     }
-=======
+
     public List<DoctorDto> getAllDoctorsWithPendingStatus() {
         List<Doctor> doctors = doctorRepository.findByStatus("pending");
         List<DoctorDto> doctorDtos = mapper().toDtos(doctors);
         return doctorDtos;
     }
 
->>>>>>> 5a171b008bcc6f857619918a61599e1222b5b80d
 
 }
