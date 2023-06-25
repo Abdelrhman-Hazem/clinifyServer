@@ -39,15 +39,15 @@ public class SecurityConfig {
     }
     private final String[] secured = {
 
-            "/appointments/**",
-
-            "/appointmentsForClinics/byDoctorId/**",
-            "/appointmentsForClinics/book/**",
+//            "/appointments/**",
+//
+//            "/appointmentsForClinics/byDoctorId/**",
+//            "/appointmentsForClinics/book/**",
 
             "/doctors/addDoctor",
             "/doctors/updateDoctor",
             "/doctors/upload",
-            "/patients/add"
+            "/patients/addPatient"
 
 
     };
