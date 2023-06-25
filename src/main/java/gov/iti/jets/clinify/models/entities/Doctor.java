@@ -36,7 +36,9 @@ public class Doctor extends BaseEntity {
      private Integer ratingCount;
      private String status;
      private Boolean isDeleted;
-    String imgUrl;
+    private String imgUrl;
+    private String docImg;
+
 
 
     private Integer avgMinutesPerPatient;
@@ -189,6 +191,15 @@ public class Doctor extends BaseEntity {
         this.imgUrl = imgUrl;
     }
 
+    @Column(name="doc_img")
+    public String getDocImg() {
+        return docImg;
+    }
+
+    public void setDocImg(String docImg) {
+        this.docImg = docImg;
+    }
+
     @OneToMany(fetch=FetchType.LAZY, mappedBy="doctor")
     public Set<Appointment> getAppointments() {
         return this.appointments;
@@ -214,7 +225,7 @@ public class Doctor extends BaseEntity {
                 ", isDeleted=" + isDeleted +
                 ", imgUrl='" + imgUrl + '\'' +
                 ", avgMinutesPerPatient=" + avgMinutesPerPatient +
-                ", appointments=" + appointments.stream().map((e)->e.getId()).collect(Collectors.toList()) +
+//                ", appointments=" + appointments.stream().map((e)->e.getId()).collect(Collectors.toList()) +
                 '}';
     }
 }

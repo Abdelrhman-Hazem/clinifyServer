@@ -90,8 +90,8 @@ public class Area extends BaseEntity {
         return "Area{" +
                 "city=" + city +
                 ", name='" + name + '\'' +
-                ", clinics=" + clinics.stream().map((e)->e.getId()).collect(Collectors.toList()) +
-                ", patients=" + patients.stream().map((e)->e.getId()).collect(Collectors.toList()) +
+//                ", clinics=" + clinics.stream().map((e)->e.getId()).collect(Collectors.toList()) +
+//                ", patients=" + patients.stream().map((e)->e.getId()).collect(Collectors.toList()) +
                 '}';
     }
 }

@@ -15,6 +15,8 @@ public interface AppointmentRepository extends BaseRepository<Appointment> {
     public List<Appointment> findAllByDoctor_IdAndDateGreaterThanAndFullAppointmentNotNullAndDoctor_IsDeletedIsFalseOrderByDate(Integer doctorId, Timestamp timestamp);
     public List<Appointment> findAllByDoctor_IdAndDateGreaterThanAndFullAppointmentNullOrderByDate(Integer doctorId, Timestamp timestamp);
 
+    public List<Appointment> findAllByDoctor_Clinic_IdAndPatientNotNull(Integer clinicId);
+
 //    public List<Appointment> findAllByDoctor_IdAndDateGreaterThan(Integer doctorId, Timestamp timestamp);
 
 }

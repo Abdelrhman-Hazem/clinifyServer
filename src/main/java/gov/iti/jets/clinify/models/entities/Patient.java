@@ -219,8 +219,8 @@ public class Patient  extends BaseEntity {
     public String toString() {
         return "Patient{" +
                 "id=" + id +
-                ", area=" + area.getId() +
-                ", city=" + city.getId() +
+                ", area=" + area +
+                ", city=" + city +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", password='" + password + '\'' +
                 ", fullName='" + fullName + '\'' +
@@ -230,8 +230,8 @@ public class Patient  extends BaseEntity {
                 ", address='" + address + '\'' +
                 ", preperationTime=" + preperationTime +
                 ", isDeleted=" + isDeleted +
-                ", patientDocuments=" + patientDocuments.stream().map((e)->e.getId()).collect(Collectors.toList()) +
-                ", appointments=" + appointments.stream().map((e)->e.getId()).collect(Collectors.toList()) +
+//                ", patientDocuments=" + patientDocuments.stream().map((e)->e.getId()).collect(Collectors.toList()) +
+//                ", appointments=" + appointments.stream().map((e)->e.getId()).collect(Collectors.toList()) +
                 '}';
     }
 }

@@ -80,8 +80,9 @@ public class AppointmentWithoutRatingService extends BaseServiceImp<Appointment,
     }
 
     public AppointmentWithoutRatingDto updateAppointment(AppointmentWithoutRatingDto dto) throws AppointmentNotSavedException{
-        updateDateTimestamp(dto);
-        validateAppointment(dto);
+        System.out.println(dto.getDate());
+//        updateDateTimestamp(dto);
+
 
         Optional<Appointment> appointmentOptional = appointmentRepository.findById(dto.getId());
 //        System.out.println("--------------------------");
@@ -89,18 +90,31 @@ public class AppointmentWithoutRatingService extends BaseServiceImp<Appointment,
 //        Appointment appointment = appointmentRepository.findById(dto.getId()).;
 
         if(appointmentOptional.isPresent()) {
+            validateAppointment(dto);
             Appointment appointment = appointmentOptional.get();
 //            System.out.println("-------------------");
             for (Appointment singleAppointment : appointment.getDividedAppointments()) {
-                long singleEndTimeStampInMinutes = singleAppointment.getDate().getTime() / (60 * 100);
+                long singleEndTimeStampInMinutes = singleAppointment.getDate().getTime() / (60 * 1000) +getTimeDifference(mapper().toDto(singleAppointment));
                 long dtoEndTimeStampInMinutes = dto.getDate().getTime() / (60 * 1000) + getTimeDifference(dto);
 
-                if (singleAppointment.getPatient() != null &&
-                        singleAppointment.getDate().compareTo(dto.getDate()) < 0
-                        || singleEndTimeStampInMinutes > dtoEndTimeStampInMinutes) {
+                if (singleAppointment.getPatient() != null
+//                        && (singleAppointment.getDate().compareTo(dto.getDate()) < 0
+//                        || singleEndTimeStampInMinutes > dtoEndTimeStampInMinutes)
+                ) {
                     throw new AppointmentNotSavedException("A patient booked an appointment during that time");
                 }
+
             }
+            System.out.println("-----------------------------------");
+            for (Appointment singleAppointment : appointment.getDividedAppointments()) {
+                System.out.println(singleAppointment.getId());
+                appointmentRepository.delete(singleAppointment);
+            }
+
+
+        }else{
+            updateDateTimestamp(dto);
+            validateAppointment(dto);
         }
         return saveChecked(dto);
     }
@@ -173,6 +187,22 @@ public class AppointmentWithoutRatingService extends BaseServiceImp<Appointment,
         dto.setDoctor(doctorService.findById(dto.getDoctor().getId()));
         if(timeDifference<dto.getDoctor().getAvgMinutesPerPatient()) throw new AppointmentNotSavedException("Appointment Time Length less than the time for 1 patient");
         if(dto.getDate().getTime()<System.currentTimeMillis()) throw  new AppointmentNotSavedException("Appointment time must be in the future");
+
+        List<AppointmentWithoutRatingDto> allFullAppointments = findAllFullByDoctorId(dto.getDoctor().getId());
+        for(AppointmentWithoutRatingDto singleAppointment:allFullAppointments){
+            long singleStartTimeStampInMinutes = singleAppointment.getDate().getTime() / (60 * 1000);
+            long singleEndTimeStampInMinutes = singleAppointment.getDate().getTime() / (60 * 1000) + getTimeDifference(singleAppointment);
+            long dtoSartTimeStampInMinutes = dto.getDate().getTime() / (60 * 1000);
+            long dtoEndTimeStampInMinutes = dto.getDate().getTime() / (60 * 1000) + getTimeDifference(dto);
+            System.out.println(singleStartTimeStampInMinutes);
+            System.out.println(singleEndTimeStampInMinutes);
+            System.out.println(dtoSartTimeStampInMinutes);
+            System.out.println(dtoEndTimeStampInMinutes);
+            if((singleStartTimeStampInMinutes <dtoSartTimeStampInMinutes && singleEndTimeStampInMinutes > dtoSartTimeStampInMinutes)
+                || singleStartTimeStampInMinutes>dtoSartTimeStampInMinutes && singleStartTimeStampInMinutes<dtoEndTimeStampInMinutes)
+                throw  new AppointmentNotSavedException("Another Appointment Already in this time span");
+        }
+
     }
 
     private long getTimeDifference(AppointmentWithoutRatingDto dto){
@@ -189,6 +219,10 @@ public class AppointmentWithoutRatingService extends BaseServiceImp<Appointment,
 //        System.out.println("kkkkkkkkkkkkkkkkkkk");
 //        System.out.println(dto.getStartTime().getTime());
 //        System.out.println(dto);
+    }
+
+    public List<AppointmentWithoutRatingDto> findAllBookedByClinicId(Integer clinicId){
+        return mapper().toDtos(appointmentRepository.findAllByDoctor_Clinic_IdAndPatientNotNull(clinicId));
     }
 
 }

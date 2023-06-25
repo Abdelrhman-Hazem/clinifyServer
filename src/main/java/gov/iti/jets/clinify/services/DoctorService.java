@@ -57,7 +57,6 @@ public class DoctorService extends BaseServiceImp<Doctor, DoctorDto> {
 
     @Autowired
     private AmazonS3 s3Client;
-
     @Override
     public BaseRepository<Doctor> Repository() {
         return doctorRepository;
