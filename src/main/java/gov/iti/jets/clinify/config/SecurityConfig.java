@@ -37,6 +37,46 @@ public class SecurityConfig {
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
+    private final String[] patientRole = {
+            "/appointments/byPatientId/**",
+            "/appointments/cancelAppointment/**",
+            "/appointments/*",
+            "/appointments/add",
+            "/appointments/update",
+
+            "/appointmentsForClinics/book/**",
+            "/appointmentsForClinics/rate/**",
+
+            "/patients/data/**",
+            "/patients/update",
+            "/patients/*"
+    };
+
+    private final String[] clinicRole = {
+
+//            "/appointmentsForClinics/byDoctorId/*",
+            "/appointmentsForClinics/add",
+            "/appointmentsForClinics/update",
+            "/appointmentsForClinics/delete",
+            "/appointmentsForClinics/*",
+//            "/appointmentsForClinics/{id}",
+            "/appointmentsForClinics/getPage",
+
+//            "/clinics/**",
+
+            "/doctors/add",
+            "/doctors/addDoctor",
+            "/doctors/delete",
+            "/doctors/update",
+            "/doctors/updateDoctor",
+            "/doctors/upload",
+
+
+//            "/patients/addPatient"
+
+
+    };
+
     private final String[] secured = {
 
 //            "/appointments/**",
@@ -46,7 +86,7 @@ public class SecurityConfig {
 
             "/doctors/addDoctor",
             "/doctors/updateDoctor",
-            "/doctors/upload",
+            "/doctors/upload"
 //            "/patients/addPatient"
 
 
@@ -66,7 +106,8 @@ public class SecurityConfig {
         );
 
         http.authorizeHttpRequests(auth -> {
-            auth.requestMatchers(secured).hasAuthority("SCOPE_CLINIC")
+            auth.requestMatchers(clinicRole).hasAuthority("SCOPE_CLINIC")
+                    .requestMatchers(patientRole).hasAuthority("SCOPE_PATIENT")
                 .requestMatchers("/**").permitAll();
         });
         return http.build();
