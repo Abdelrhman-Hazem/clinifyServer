@@ -20,12 +20,12 @@ public class PatientController extends BaseController<Patient, PatientDto> {
 
     @PostMapping( "/addPatient")
     public ResponseEntity<PatientDto> addPatient(@RequestBody PatientDto dto) {
-        PatientDto patientDto = this.patientService.findPatientDataByPhoneNumber(dto.getPhoneNumber());
-        PatientDto patientDto2= this.patientService.findPatientDataByEmail(dto.getEmail());
+        boolean patientDto = this.patientService.isPhoneNumberExist(dto.getPhoneNumber());
+        boolean patientDto2= this.patientService.isEmailExist(dto.getEmail());
 
-        if(patientDto != null){
+        if(patientDto == true){
             throw new FieldNotUniqueException("phone", "Already Exists");
-        }else if(patientDto2 != null){
+        }else if(patientDto2 == true){
             throw new FieldNotUniqueException("email", "Already Exists");
         }
 

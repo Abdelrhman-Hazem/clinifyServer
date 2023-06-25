@@ -29,20 +29,30 @@ public class PatientService extends BaseServiceImp<Patient, PatientDto>{
         return Mappers.getMapper(PatientMapper.class);
     }
 
-    public PatientDto findPatientDataByEmail(String email){
+    public boolean isEmailExist(String email){
         Optional<Patient> patient = patientRepository.findByEmailIgnoreCase(email);
         if(patient.isPresent()){
-            return   mapper().toDto(patient.get());
+            return true;
         }
-        return null;
+        return false;
+    }
+
+    public boolean isPhoneNumberExist(String phoneNumber){
+        Optional<Patient> patient = patientRepository.findByPhoneNumber(phoneNumber);
+        if(patient.isPresent()){
+            return true;
+        }
+        return false;
+    }
+
+    public PatientDto findPatientDataByEmail(String email){
+        Optional<Patient> patient = patientRepository.findByEmailIgnoreCase(email);
+        return patient.map(x -> mapper().toDto(x)).orElseThrow();
     }
 
     public PatientDto findPatientDataByPhoneNumber(String phoneNumber){
         Optional<Patient> patient = patientRepository.findByPhoneNumber(phoneNumber);
-        if(patient.isPresent()){
-            return   mapper().toDto(patient.get());
-        }
-        return null;
+        return patient.map(x -> mapper().toDto(x)).orElseThrow();
     }
 
     public PatientDto findPatientDataByPhoneNumberOrEmail(String token){

@@ -16,6 +16,7 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -34,15 +35,15 @@ public class ClinicService extends BaseServiceImp<Clinic, ClinicDto>{
     }
 
     public ClinicDto findClinicDataByEmail(String email){
-        Clinic clinic = clinicRepository.findByEmailIgnoreCase(email).get();
-        ClinicDto clinicDto = mapper().toDto(clinic);
+        Optional<Clinic> clinic = clinicRepository.findByEmailIgnoreCase(email);
+        ClinicDto clinicDto = clinic.map(x -> mapper().toDto(x)).orElseThrow();
 
         return clinicDto;
     }
 
     public ClinicDto findClinicDataByPhoneNumber(String phoneNumber){
-        Clinic clinic = clinicRepository.findByPhoneNumber(phoneNumber).get();
-        ClinicDto clinicDto = mapper().toDto(clinic);
+        Optional<Clinic> clinic = clinicRepository.findByPhoneNumber(phoneNumber);
+        ClinicDto clinicDto = clinic.map(x -> mapper().toDto(x)).orElseThrow();
 
         return clinicDto;
     }
