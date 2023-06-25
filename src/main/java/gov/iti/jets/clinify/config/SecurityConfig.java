@@ -47,7 +47,7 @@ public class SecurityConfig {
             "/doctors/addDoctor",
             "/doctors/updateDoctor",
             "/doctors/upload",
-            "/patients/addPatient"
+//            "/patients/addPatient"
 
 
     };
