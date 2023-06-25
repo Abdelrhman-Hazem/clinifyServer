@@ -196,11 +196,4 @@ public class DoctorService extends BaseServiceImp<Doctor, DoctorDto> {
         return  (PageResult<DoctorDto>) mapper().toDtosPage(pageResult);
     }
 
-    public List<DoctorDto> getAllDoctorsWithPendingStatus() {
-        List<Doctor> doctors = doctorRepository.findByStatus("pending");
-        List<DoctorDto> doctorDtos = mapper().toDtos(doctors);
-        return doctorDtos;
-    }
-
-
 }
