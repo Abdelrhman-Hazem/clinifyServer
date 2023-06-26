@@ -49,6 +49,7 @@ public class SecurityConfig {
 
             "/patients/data/**",
             "/patients/update",
+            "/patients/changePassword"
 //            "/patients/*"
     };
 

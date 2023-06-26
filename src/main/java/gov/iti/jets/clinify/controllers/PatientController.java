@@ -60,4 +60,15 @@ public class PatientController extends BaseController<Patient, PatientDto> {
         System.out.println(patientDto);
         return ResponseEntity.ok().body(patientDto);
     }
+
+    @PutMapping( "/changePassword")
+    public ResponseEntity<PatientDto> changePassword(@RequestBody PatientDto dto) {
+
+        //Hashing password
+        String hashedPassword = passwordEncoder.encode(dto.getPassword());
+        dto.setPassword(hashedPassword);
+
+        PatientDto savedDto  = patientService.save(dto);
+        return new ResponseEntity<>(savedDto, HttpStatus.OK);
+    }
 }
