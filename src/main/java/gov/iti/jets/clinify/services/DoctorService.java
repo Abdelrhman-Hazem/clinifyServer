@@ -144,7 +144,13 @@ public class DoctorService extends BaseServiceImp<Doctor, DoctorDto> {
 
     public void updateRating(Doctor doctor, Integer rating){
         Double avgRating = doctor.getAverageRating();
+        if(avgRating == null){
+            avgRating = 0d;
+        }
         Integer ratingCount = doctor.getRatingCount();
+        if(ratingCount == null){
+            ratingCount = 0;
+        }
         avgRating = (avgRating*ratingCount+rating)/(ratingCount+1);
         doctor.setAverageRating(avgRating);
         doctor.setRatingCount(ratingCount+1);
