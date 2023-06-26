@@ -205,7 +205,7 @@ public class Clinic  extends BaseEntity {
                 ", address='" + address + '\'' +
                 ", status='" + status + '\'' +
                 ", isDeleted=" + isDeleted +
-                ", doctors=" + doctors.stream().map((e)->e.getId()).collect(Collectors.toList()) +
+//                ", doctors=" + doctors.stream().map((e)->e.getId()).collect(Collectors.toList()) +
                 '}';
     }
 }

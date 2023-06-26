@@ -58,12 +58,12 @@ public class AppointmentService extends BaseServiceImp<Appointment, AppointmentD
             System.out.println("--------------------lets Cancel");
 
             Appointment appointment = appointmentOptional.get();
-            System.out.println(appointment.getPatient());
-            System.out.println(appointment);
+//            System.out.println(appointment.getPatient());
+//            System.out.println(appointment);
             appointment.setPatient(null);
             appointmentRepository.save(appointment);
-            System.out.println(appointment);
-            System.out.println("---------------------cancelation saved");
+//            System.out.println(appointment);
+//            System.out.println("---------------------cancelation saved");
 
         } else {
             throw new IllegalArgumentException("Appointment not found with id: " + id);

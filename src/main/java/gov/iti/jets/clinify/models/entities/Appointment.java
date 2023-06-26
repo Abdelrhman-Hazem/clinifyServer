@@ -193,7 +193,7 @@ public class Appointment extends BaseEntity {
                 "id=" + id +
                 "\n, doctor=" + doctor +
                 "\n, patient=" + patient +
-                "\n, fullAppointment=" + fullAppointment +
+//                "\n, fullAppointment=" + fullAppointment +
                 "\n, date=" + date +
                 "\n, startTime=" + startTime +
                 "\n, endTime=" + endTime +
