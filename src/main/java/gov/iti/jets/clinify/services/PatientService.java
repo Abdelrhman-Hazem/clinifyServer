@@ -36,6 +36,13 @@ public class PatientService extends BaseServiceImp<Patient, PatientDto>{
         }
         return false;
     }
+    public Patient isEmailExistObject(String email){
+        Optional<Patient> patient = patientRepository.findByEmailIgnoreCase(email);
+        if(patient.isPresent()){
+            return patient.get();
+        }
+        return null;
+    }
 
     public boolean isPhoneNumberExist(String phoneNumber){
         Optional<Patient> patient = patientRepository.findByPhoneNumber(phoneNumber);
@@ -44,6 +51,14 @@ public class PatientService extends BaseServiceImp<Patient, PatientDto>{
         }
         return false;
     }
+    public Patient isPhoneNumberExistObject(String phoneNumber){
+        Optional<Patient> patient = patientRepository.findByPhoneNumber(phoneNumber);
+        if(patient.isPresent()){
+            return patient.get();
+        }
+        return null;
+    }
+
 
     public PatientDto findPatientDataByEmail(String email){
         Optional<Patient> patient = patientRepository.findByEmailIgnoreCase(email);

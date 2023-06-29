@@ -90,8 +90,12 @@ public class AppointmentWithoutRatingService extends BaseServiceImp<Appointment,
 //        Appointment appointment = appointmentRepository.findById(dto.getId()).;
 
         if(appointmentOptional.isPresent()) {
-            validateAppointment(dto);
+            System.out.println("OLD APPOINTMENT-----------------------");
+            System.out.println(dto);
+
             Appointment appointment = appointmentOptional.get();
+            if(appointment.getDate().compareTo(dto.getDate())!=0)updateDateTimestamp(dto);
+            validateAppointment(dto);
 //            System.out.println("-------------------");
             for (Appointment singleAppointment : appointment.getDividedAppointments()) {
                 long singleEndTimeStampInMinutes = singleAppointment.getDate().getTime() / (60 * 1000) +getTimeDifference(mapper().toDto(singleAppointment));
@@ -113,7 +117,10 @@ public class AppointmentWithoutRatingService extends BaseServiceImp<Appointment,
 
 
         }else{
+            System.out.println("NEW APPOINTMENT------------------");
+            System.out.println(dto);
             updateDateTimestamp(dto);
+            System.out.println(dto);
             validateAppointment(dto);
         }
         return saveChecked(dto);
@@ -189,18 +196,22 @@ public class AppointmentWithoutRatingService extends BaseServiceImp<Appointment,
         if(dto.getDate().getTime()<System.currentTimeMillis()) throw  new AppointmentNotSavedException("Appointment time must be in the future");
 
         List<AppointmentWithoutRatingDto> allFullAppointments = findAllFullByDoctorId(dto.getDoctor().getId());
-        for(AppointmentWithoutRatingDto singleAppointment:allFullAppointments){
-            long singleStartTimeStampInMinutes = singleAppointment.getDate().getTime() / (60 * 1000);
-            long singleEndTimeStampInMinutes = singleAppointment.getDate().getTime() / (60 * 1000) + getTimeDifference(singleAppointment);
-            long dtoSartTimeStampInMinutes = dto.getDate().getTime() / (60 * 1000);
-            long dtoEndTimeStampInMinutes = dto.getDate().getTime() / (60 * 1000) + getTimeDifference(dto);
-            System.out.println(singleStartTimeStampInMinutes);
-            System.out.println(singleEndTimeStampInMinutes);
-            System.out.println(dtoSartTimeStampInMinutes);
-            System.out.println(dtoEndTimeStampInMinutes);
-            if((singleStartTimeStampInMinutes <dtoSartTimeStampInMinutes && singleEndTimeStampInMinutes > dtoSartTimeStampInMinutes)
-                || singleStartTimeStampInMinutes>dtoSartTimeStampInMinutes && singleStartTimeStampInMinutes<dtoEndTimeStampInMinutes)
-                throw  new AppointmentNotSavedException("Another Appointment Already in this time span");
+        for(AppointmentWithoutRatingDto singleAppointment:allFullAppointments) {
+            if (dto.getId() != null && singleAppointment.getId() != dto.getId()) {
+                long singleStartTimeStampInMinutes = singleAppointment.getDate().getTime() / (60 * 1000);
+                long singleEndTimeStampInMinutes = singleAppointment.getDate().getTime() / (60 * 1000) + getTimeDifference(singleAppointment);
+                long dtoSartTimeStampInMinutes = dto.getDate().getTime() / (60 * 1000);
+                long dtoEndTimeStampInMinutes = dto.getDate().getTime() / (60 * 1000) + getTimeDifference(dto);
+//            System.out.println("single date "+singleAppointment.getDate());
+//            System.out.println("dto date "+dto.getDate());
+//            System.out.println("singleStartTimeStampInMinutes "+ singleStartTimeStampInMinutes);
+//            System.out.println("singleEndTimeStampInMinutes "+ singleEndTimeStampInMinutes);
+//            System.out.println("dtoSartTimeStampInMinutes "+ dtoSartTimeStampInMinutes);
+//            System.out.println("dtoEndTimeStampInMinutes"+ dtoEndTimeStampInMinutes);
+                if ((singleStartTimeStampInMinutes <= dtoSartTimeStampInMinutes && singleEndTimeStampInMinutes > dtoSartTimeStampInMinutes)
+                        || singleStartTimeStampInMinutes >= dtoSartTimeStampInMinutes && singleStartTimeStampInMinutes < dtoEndTimeStampInMinutes)
+                    throw new AppointmentNotSavedException("Another Appointment Already in this time span");
+            }
         }
 
     }

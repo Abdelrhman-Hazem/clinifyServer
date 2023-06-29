@@ -214,7 +214,7 @@ public class Doctor extends BaseEntity {
     public String toString() {
         return "Doctor{" +
                 "doctorTitle=" + doctorTitle.getName() +
-                ", clinic=" + clinic.getId() +
+//                ", clinic=" + clinic.getId() +
                 ", doctorSpecialization=" + doctorSpecialization.getName() +
                 ", fullName='" + fullName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
